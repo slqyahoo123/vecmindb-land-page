@@ -8,13 +8,8 @@ const path = require('path');
 
 const assets = [
     { cat: 'Development', name: 'Agent Memory Portal', file: 'index.html', desc: '10B-Scale Agent memory visualization & i18n frontend.' },
-    { cat: 'Sales Arsenal', name: 'Cold Outbound scripts', file: 'docs/sales/sales_scripts.md', desc: 'High-impact outbound templates for Agent memory scenarios.' },
-    { cat: 'Sales Arsenal', name: 'Pro Sales Playbook', file: 'docs/sales/sales_playbook_pro.md', desc: 'Strategy for CEO/CTO level objection handling.' },
-    { cat: 'Strategy', name: 'Pitch Deck Outline', file: 'BUSINESS_DECK_OUTLINE.md', desc: '12-slide executive presentation for capital raising.' },
     { cat: 'Operations', name: 'Docker Infrastructure', file: 'Dockerfile', desc: 'SRE-hardened container environment with Health Probes.' },
-    { cat: 'Sales Arsenal', name: 'Outbound SOP', file: 'docs/sales/OUTBOUND_SOP.md', desc: 'Step-by-step guidance to win the first Agent memory order.' },
     { cat: 'QA', name: 'E2E Test Suite', file: 'tests/landing_page_e2e.test.js', desc: 'Playwright-based automated quality assurance.' },
-    { cat: 'Legacy', name: 'Master Handover', file: 'HANDOVER.md', desc: 'Central index for all project coordinates.' }
 ];
 
 const generateHtml = () => {
@@ -37,7 +32,7 @@ const generateHtml = () => {
     <body>
         <div class="cat">Shanghai Lingxin Intelligent Technology</div>
         <h1>VecminDB 资产全景看板 <span class="badge">AGENT MEMORY EDITION</span></h1>
-        <p style="color: #a1a1aa; max-width: 600px;">这是为您打造的 10B 阶 AI Agent 记忆中枢项目资产包。涵盖了从前端动效、容器化运维到全链路销售话术的所有实战化产出。</p>
+        <p style="color: #a1a1aa; max-width: 600px;">VecminDB landing page public assets overview.</p>
         <div class="grid">
             ${assets.map(a => `
                 <div class="card">

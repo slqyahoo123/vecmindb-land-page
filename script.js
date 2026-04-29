@@ -21,7 +21,7 @@ const translations = {
         'feat-3-p': '原生支持动态知识图谱嵌入与跨模态记忆持久化，定义 Agent 的智慧边际。',
         'wait-h': '抢先体验 VecminDB',
         'wait-p': '我们即将开启企业尊享内测，名额有限。请提交您的邮件地址，我们将第一时间与您联系。',
-        'wait-checkbox': '我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》及专利技术摘要',
+        'wait-checkbox': '我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》',
         'input-placeholder': '输入您的企业邮箱...',
         'btn-submit': '预约席位',
         'feedback': '感谢您的关注！灵心智算团队将很快与您取得联系。'
@@ -43,7 +43,7 @@ const translations = {
         'feat-3-p': 'Native support for dynamic KG embeddings and cross-modal intent persistence at scale.',
         'wait-h': 'Experience VecminDB First',
         'wait-p': 'Exclusive enterprise beta opening soon. Limited seats available. Submit your email to be the first to know.',
-        'wait-checkbox': 'I would like priority access to the "10B-Scale Agent Memory Architecture" Whitepaper & Patent Abstracts.',
+        'wait-checkbox': 'I would like priority access to the "10B-Scale Agent Memory Architecture" Whitepaper.',
         'input-placeholder': 'Enter company email...',
         'btn-submit': 'Reserve Seat',
         'feedback': 'Thanks for your interest! Our team will contact you shortly.'
