@@ -1,0 +1,18 @@
+{
+  "name": "lingxin-zhisuan-landing-page",
+  "version": "1.0.0",
+  "description": "上海灵心智算智能科技有限公司官方品牌落地页。基于VecminDB架构优势打造的高端数字化门户。",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ./",
+    "dev": "npx -y browser-sync start --server --files '*.html, *.css, *.js'"
+  },
+  "keywords": [
+    "VectorDB",
+    "LandingPage",
+    "AI",
+    "RAG"
+  ],
+  "author": "上海灵心智算智能科技有限公司",
+  "license": "MIT"
+}

@@ -1,0 +1,35 @@
+name: Lingxin AI Landing Page CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Validate Code Quality (Lint)
+      run: npx eslint . --ext .js
+
+    - name: Execute E2E Smoke Tests
+      run: |
+        npx playwright install --with-deps
+        npm test
+
+    - name: Production Image Build Check
+      run: docker build -t lingxin-lp:latest .

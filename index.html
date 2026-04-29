@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海灵心智算 | 百亿级 AI Agent 长效记忆与动态知识库</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23050508'/><circle cx='50' cy='50' r='30' stroke='%233b82f6' stroke-width='8' fill='none' stroke-dasharray='10 5'/><circle cx='50' cy='50' r='10' fill='%2306b6d4'/></svg>">
+    <meta name="description" content="上海灵心智算：VecminDB，专为 AI Agent 打造的 10B 级自进化记忆引擎。集成 NSGA-II 算法，支持实时动态知识检索，高性能高并发物理分片锁，定义 AGI 时代的商业级长效记忆底座。">
+    <meta name="keywords" content="向量数据库, AI Agent 记忆, 10B Scale, 向量检索, NSGA-II, 灵心智算, 动态知识库, RAG 优化">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lingxin-ai.com/">
+    <meta property="og:title" content="上海灵心智算 | 下一代自进化向量数据库底座">
+    <meta property="og:description" content="VecminDB：全球首款集成NSGA-II自进化引擎的10B级高性能向量数据库，重塑AI时代的智算感知底座。">
+    <meta property="og:image" content="https://lingxin-ai.com/assets/og-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="上海灵心智算 | VecminDB">
+    <meta name="twitter:description" content="自进化、10B级并发、工业级稳定。为大模型时代打造的向量检索底座。">
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 系统初始化入场层 -->
+    <div id="loader-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050508; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-out;">
+        <div style="font-size: 0.8rem; color: var(--accent-secondary); letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase;">Lingxin Computing Core</div>
+        <div style="width: 200px; height: 1px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden;">
+            <div id="loader-bar" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gradient-aurora); animation: load 2s infinite;"></div>
+        </div>
+        <div id="loader-status" style="font-size: 0.6rem; color: var(--text-secondary); margin-top: 15px; font-family: monospace;">INITIALIZING VECMIN_DB MANIFOLD...</div>
+    </div>
+
+    <div id="canvas-container"></div>
+    <div class="aurora"></div>
+
+    <header>
+        <div class="logo">灵心智算 | LINGXIN AI</div>
+        <nav id="mainNav">
+            <a href="#features" data-i18n="nav-tech">核心技术</a>
+            <a href="#vision" data-i18n="nav-vision">企业愿景</a>
+            <a href="#waitlist" data-i18n="nav-join">加入内测</a>
+            <div class="header-tools">
+                <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌓</button>
+                <button id="langBtn" class="lang-toggle">EN</button>
+            </div>
+        </nav>
+        <!-- 移动端菜单触发器 -->
+        <button id="menuBtn" class="menu-trigger">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="slogan-badge reveal" data-i18n="hero-slogan">智算无界，灵心先行</div>
+            <h1 class="float-anim" data-i18n="hero-title">为 10B 阶 AI Agent 打造的<br><span class="gradient-text">长效数字化记忆</span></h1>
+            <p data-i18n="hero-desc">上海灵心智算推出的 VecminDB，是全球首款集成 NSGA-II 自进化引擎的 AI Agent 专用数据库，专为百亿级动态知识与长时记忆工作负载打造。</p>
+            <div class="hero-btns">
+                <a href="#waitlist" class="btn-primary" data-i18n="btn-apply">申请内测席位</a>
+            </div>
+        </section>
+
+        <!-- Visualization Hub -->
+        <section class="section reveal" style="padding-top: 0;">
+            <div id="vector-hub" class="waitlist-container" style="max-width: 1000px; height: 350px; overflow: hidden; padding: 0; position: relative; display: flex; align-items: center; justify-content: center;">
+                <canvas id="vizCanvas"></canvas>
+                <div style="position: absolute; bottom: 20px; left: 20px; text-align: left; pointer-events: none;">
+                    <div style="font-size: 0.7rem; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 2px;">Vector Processing Pipeline</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: white; margin-top: 5px;">10B SCALE <span style="font-weight: 300; opacity: 0.7;">INGESTION</span></div>
+                </div>
+                <!-- 模拟扫描线 -->
+                <div class="scan-line"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section reveal">
+            <h2 style="text-align: center; font-size: 2.5rem;" data-i18n="feat-title">工业级向量核心</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <h3 data-i18n="feat-1-h">01. 自进化调优</h3>
+                    <p data-i18n="feat-1-p">内置 NSGA-II 多目标优化算法，在召回率与延迟之间寻找 Pareto 最优解，告别乏味的手动调参。</p>
+                </div>
+                <div class="card reveal">
+                    <h3 data-i18n="feat-2-h">02. 10B 级吞吐</h3>
+                    <p data-i18n="feat-2-p">采用 1024 路物理分片 Manifold 锁机制，支持海量并发写入，为企业级 RAG 提供稳健支撑。</p>
+                </div>
+                <div class="card reveal">
+                    <h3 data-i18n="feat-3-h">03. Agent 记忆中枢</h3>
+                    <p data-i18n="feat-3-p">针对多 Agent 协作场景优化的动态知识索引，原生支持长时对话上下文与跨模态交互意图的高性能持久化。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waitlist Section -->
+        <section id="waitlist" class="section">
+            <div class="waitlist-container reveal">
+                <h2 style="margin-bottom: 1rem;" data-i18n="wait-h">抢先体验 VecminDB</h2>
+                <p style="color: var(--text-secondary);" data-i18n="wait-p">我们即将开启企业尊享内测，名额有限。请提交您的邮件地址，我们将第一时间与您联系。</p>
+                <form id="waitlistForm" class="waitlist-form">
+                    <input type="email" id="userEmail" data-i18n="input-placeholder" placeholder="输入您的企业邮箱..." required>
+                    <div class="waitlist-options">
+                        <input type="checkbox" id="whitepaper">
+                        <label for="whitepaper" data-i18n="wait-checkbox">我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》及专利技术摘要</label>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn-primary" data-i18n="btn-submit">预约席位</button>
+                </form>
+                <div id="formFeedback" style="margin-top: 1rem; display: none; color: var(--accent-secondary); font-weight: 600;" data-i18n="feedback">
+                    感谢您的关注！灵心智算团队将很快与您取得联系。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 上海灵心智算智能科技有限公司. All Rights Reserved.</p>
+        <p style="font-size: 0.7rem; color: #52525b; margin-top: 10px;">
+            VecminDB 系统及其核心算法（包括但不限于 NSGA-II 自进化引擎、1024路 Manifold 锁机制）已被提交多项发明专利申请。未经授权，任何形式的商业模仿将面临法律追责。
+        </p>
+        <p style="margin-top: 0.5rem; opacity: 0.5; font-size: 0.75rem;">
+            <a href="#" style="color: inherit; margin: 0 10px;">Privacy Policy</a> | 
+            <a href="#" style="color: inherit; margin: 0 10px;">Terms of Service</a> | 
+            <span style="margin: 0 10px;">沪ICP备XXXXXXXX号</span>
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.5;">SHANGHAI LINGXIN INTELLIGENT TECHNOLOGY CO., LTD.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
