@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim License Key — LingxinMind</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 500px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        h1 { font-size: 24px; }
+        p { color: #64748b; }
+        input, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 16px; box-sizing: border-box; }
+        button { background: #3b82f6; color: #fff; border: none; cursor: pointer; }
+        button:disabled { background: #94a3b8; }
+        #result { margin-top: 20px; padding: 16px; border-radius: 8px; display: none; }
+        #result.success { background: #dcfce7; color: #166534; display: block; }
+        #result.error { background: #fee2e2; color: #991b1b; display: block; }
+    </style>
+</head>
+<body>
+    <h1>Claim Your License Key</h1>
+    <p>Enter your PayPal email and subscription ID to receive your V3 Pro license key.</p>
+    <input type="email" id="email" placeholder="PayPal email used for payment" required>
+    <input type="text" id="subId" placeholder="Subscription ID (from PayPal receipt)" required>
+    <button id="claimBtn" onclick="claimKey()">Get License Key</button>
+    <div id="result"></div>
+
+    <script>
+    function claimKey() {
+        var email = document.getElementById('email').value.trim();
+        var subId = document.getElementById('subId').value.trim();
+        if (!email || !subId) { alert('Please fill in both fields.'); return; }
+
+        var btn = document.getElementById('claimBtn');
+        btn.disabled = true; btn.textContent = 'Processing...';
+
+        fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, subscriptionId: subId })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            var el = document.getElementById('result');
+            if (d.key) {
+                el.className = 'success';
+                el.innerHTML = '<strong>Your license key:</strong><br><br><code style="font-size:18px;word-break:break-all;">' + d.key + '</code><br><br>Enter this in any V3 extension to unlock Pro.';
+            } else {
+                el.className = 'error';
+                el.textContent = 'Error: ' + (d.error || 'Unknown error');
+            }
+        })
+        .catch(function() {
+            document.getElementById('result').className = 'error';
+            document.getElementById('result').textContent = 'Server unreachable. Contact support.';
+        })
+        .then(function() {
+            btn.disabled = false; btn.textContent = 'Get License Key';
+        });
+    }
+    </script>
+</body>
+</html>
