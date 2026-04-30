@@ -216,24 +216,40 @@ const initWaitlistForm = () => {
 
     if (!form || !submitBtn) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const emailInput = document.getElementById('userEmail');
-        
-        // 追踪提交事件 (带异常保护)
-        try {
-            trackEvent('Waitlist_Submit', { email: emailInput.value });
-        } catch (err) { console.warn("Analytics blocked or failed."); }
+        const replyto = document.getElementById('hiddenReplyto');
+        if (replyto && emailInput) replyto.value = emailInput.value;
 
-        // 交互反馈
         submitBtn.disabled = true;
-        submitBtn.innerText = '正在预约...';
+        submitBtn.innerText = '正在提交...';
 
-        setTimeout(() => {
-            form.style.display = 'none';
-            if (feedback) feedback.style.display = 'block';
-            console.log("Lingxin AI: User Joined the Waitlist.");
-        }, 1200);
+        try {
+            const fd = new FormData(form);
+            const resp = await fetch(form.action, {
+                method: 'POST',
+                body: fd,
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await resp.json();
+
+            trackEvent('Waitlist_Submit', { email: emailInput.value, success: data.success });
+
+            if (data.success) {
+                form.style.display = 'none';
+                if (feedback) feedback.style.display = 'block';
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.innerText = '预约席位';
+                alert('提交失败，请稍后重试。');
+            }
+        } catch (err) {
+            trackEvent('Waitlist_Submit', { email: emailInput.value, error: String(err) });
+            submitBtn.disabled = false;
+            submitBtn.innerText = '预约席位';
+            alert('网络错误，请检查连接后重试。');
+        }
     });
 };
 
