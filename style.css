@@ -206,7 +206,16 @@ nav a:hover {
 /* 移动端适配 */
 @media (max-width: 768px) {
     .menu-trigger { display: flex; }
-    
+
+    .header-tools {
+        margin-left: auto;
+        margin-right: 0.5rem;
+    }
+
+    .lang-toggle {
+        margin-left: 0.5rem;
+    }
+
     header nav {
         position: fixed;
         right: -100%;

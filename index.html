@@ -28,28 +28,28 @@
 <body>
     <!-- 系统初始化入场层 -->
     <div id="loader-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050508; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease-out;">
-        <div style="font-size: 0.8rem; color: var(--accent-secondary); letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase;">Lingxin Computing Core</div>
+        <div style="font-size: 0.8rem; color: var(--accent-secondary); letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase;" data-i18n="loader-title">Lingxin Computing Core</div>
         <div style="width: 200px; height: 1px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden;">
             <div id="loader-bar" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gradient-aurora); animation: load 2s infinite;"></div>
         </div>
-        <div id="loader-status" style="font-size: 0.6rem; color: var(--text-secondary); margin-top: 15px; font-family: monospace;">INITIALIZING VECMIN_DB MANIFOLD...</div>
+        <div id="loader-status" style="font-size: 0.6rem; color: var(--text-secondary); margin-top: 15px; font-family: monospace;" data-i18n="loader-status">INITIALIZING VECMIN_DB ENGINE...</div>
     </div>
 
     <div id="canvas-container"></div>
     <div class="aurora"></div>
 
     <header>
-        <div class="logo">灵心智算 | LINGXIN AI</div>
+        <div class="logo" data-i18n="logo-text">灵心智算 | LINGXIN AI</div>
         <nav id="mainNav">
             <a href="#features" data-i18n="nav-tech">核心技术</a>
             <a href="#specs" data-i18n="nav-specs">设计规格</a>
             <a href="#code" data-i18n="nav-code">快速上手</a>
             <a href="#waitlist" data-i18n="nav-join">加入内测</a>
-            <div class="header-tools">
-                <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌓</button>
-                <button id="langBtn" class="lang-toggle">EN</button>
-            </div>
         </nav>
+        <div class="header-tools">
+            <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌓</button>
+            <button id="langBtn" class="lang-toggle">EN</button>
+        </div>
         <!-- 移动端菜单触发器 -->
         <button id="menuBtn" class="menu-trigger">
             <span></span><span></span><span></span>
@@ -73,8 +73,8 @@
             <div id="vector-hub" class="waitlist-container" style="max-width: 1000px; height: 350px; overflow: hidden; padding: 0; position: relative; display: flex; align-items: center; justify-content: center;">
                 <canvas id="vizCanvas"></canvas>
                 <div style="position: absolute; bottom: 20px; left: 20px; text-align: left; pointer-events: none;">
-                    <div style="font-size: 0.7rem; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 2px;">Vector Processing Pipeline</div>
-                    <div style="font-size: 1.2rem; font-weight: 800; color: white; margin-top: 5px;">10B SCALE <span style="font-weight: 300; opacity: 0.7;">INGESTION</span></div>
+                    <div style="font-size: 0.7rem; color: var(--accent-secondary); text-transform: uppercase; letter-spacing: 2px;" data-i18n="viz-label">Vector Processing Pipeline</div>
+                    <div style="font-size: 1.2rem; font-weight: 800; color: white; margin-top: 5px;" data-i18n="viz-title">10B SCALE <span style="font-weight: 300; opacity: 0.7;">INGESTION</span></div>
                 </div>
                 <!-- 模拟扫描线 -->
                 <div class="scan-line"></div>
@@ -144,10 +144,10 @@
 
 <span class="pp">#[tokio::main]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="fn">main</span>() -> <span class="t">Result</span>&lt;()&gt; {
-    <span class="cm">// 连接到 VecminDB 实例</span>
+    <span class="cm" data-i18n="code-c1">// 连接到 VecminDB 实例</span>
     <span class="kw">let</span> db = <span class="t">VecminDB</span>::<span class="fn">connect</span>(<span class="s">"localhost:42678"</span>).<span class="fn">await</span>?;
 
-    <span class="cm">// 创建带 NSGA-II 优化的集合</span>
+    <span class="cm" data-i18n="code-c2">// 创建带 NSGA-II 优化的集合</span>
     <span class="kw">let</span> collection = db
         .<span class="fn">create_collection</span>(<span class="t">CollectionConfig</span> {
             dimensions: <span class="n">768</span>,
@@ -156,7 +156,7 @@
         })
         .<span class="fn">await</span>?;
 
-    <span class="cm">// 写入向量数据</span>
+    <span class="cm" data-i18n="code-c3">// 写入向量数据</span>
     collection
         .<span class="fn">insert</span>([
             (<span class="s">"doc_1"</span>, <span class="fn">vec</span>![<span class="n">0.1</span>; <span class="n">768</span>]),
@@ -164,7 +164,7 @@
         ])
         .<span class="fn">await</span>?;
 
-    <span class="cm">// 语义检索 Top-K</span>
+    <span class="cm" data-i18n="code-c4">// 语义检索 Top-K</span>
     <span class="kw">let</span> results = collection
         .<span class="fn">search</span>(<span class="fn">vec</span>![<span class="n">0.15</span>; <span class="n">768</span>])
         .<span class="fn">top_k</span>(<span class="n">10</span>)

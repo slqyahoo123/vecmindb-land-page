@@ -36,7 +36,16 @@ const translations = {
         'wait-checkbox': '我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》',
         'input-placeholder': '输入您的企业邮箱...',
         'btn-submit': '预约席位',
-        'feedback': '感谢您的关注！灵心智算团队将很快与您取得联系。'
+        'feedback': '感谢您的关注！灵心智算团队将很快与您取得联系。',
+        'loader-title': 'Lingxin Computing Core',
+        'loader-status': 'INITIALIZING VECMIN_DB ENGINE...',
+        'logo-text': '灵心智算 | LINGXIN AI',
+        'viz-label': '向量处理管线',
+        'viz-title': '10B 级 <span style="font-weight: 300; opacity: 0.7;">数据摄入</span>',
+        'code-c1': '// 连接到 VecminDB 实例',
+        'code-c2': '// 创建带 NSGA-II 优化的集合',
+        'code-c3': '// 写入向量数据',
+        'code-c4': '// 语义检索 Top-K'
     },
     'en': {
         'nav-tech': 'Technology',
@@ -69,7 +78,16 @@ const translations = {
         'wait-checkbox': 'I would like priority access to the "10B-Scale Agent Memory Architecture" Whitepaper.',
         'input-placeholder': 'Enter company email...',
         'btn-submit': 'Reserve Seat',
-        'feedback': 'Thanks for your interest! Our team will contact you shortly.'
+        'feedback': 'Thanks for your interest! Our team will contact you shortly.',
+        'loader-title': 'Lingxin Computing Core',
+        'loader-status': 'INITIALIZING VECMIN_DB ENGINE...',
+        'logo-text': 'LINGXIN AI',
+        'viz-label': 'Vector Processing Pipeline',
+        'viz-title': '10B SCALE <span style="font-weight: 300; opacity: 0.7;">INGESTION</span>',
+        'code-c1': '// Connect to VecminDB instance',
+        'code-c2': '// Create a collection with NSGA-II',
+        'code-c3': '// Insert vector data',
+        'code-c4': '// Semantic search Top-K'
     }
 };
 
