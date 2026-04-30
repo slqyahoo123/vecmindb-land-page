@@ -81,7 +81,20 @@
             return actions.subscription.create({ plan_id: 'P-9RD48572XF8523849NHZSPKA' });
           },
           onApprove: function(data, actions) {
-            alert('Subscription successful! ID: ' + data.subscriptionID + '. You will receive your license key via email shortly.');
+            var email = prompt('Enter your PayPal email to receive license key:');
+            if (email) {
+              fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, subscriptionId: data.subscriptionID })
+              })
+              .then(function(r) { return r.json(); })
+              .then(function(d) {
+                if (d.key) alert('✅ License key: ' + d.key + '\n\nEnter this in the extension to unlock Pro!');
+                else alert('Error: ' + (d.error || 'unknown'));
+              })
+              .catch(function() { alert('Error connecting to license server. Contact support.'); });
+            }
           }
       }).render('#paypal-button-container-P-9RD48572XF8523849NHZSPKA');
     </script>
