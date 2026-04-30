@@ -415,6 +415,78 @@ footer {
     border-top: 1px solid var(--glass-border);
 }
 
+.footer-mission {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.mission-badge {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+}
+
+.footer-mission p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.code-block {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #0a0a0f;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.code-lang {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-secondary);
+    font-weight: 600;
+}
+
+.code-filename {
+    font-size: 0.75rem;
+    color: #52525b;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.code-block pre {
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #e4e4e7;
+    tab-size: 4;
+}
+
+.code-block .kw  { color: #ff79c6; }
+.code-block .t   { color: #8be9fd; }
+.code-block .fn  { color: #50fa7b; }
+.code-block .s   { color: #f1fa8c; }
+.code-block .n   { color: #bd93f9; }
+.code-block .cm  { color: #6272a4; font-style: italic; }
+.code-block .pp  { color: #ffb86c; }
+.code-block .en  { color: #ff5555; }
+.code-block .v   { color: #6bc4f7; }
+
 .specs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

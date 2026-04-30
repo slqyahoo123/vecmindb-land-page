@@ -43,6 +43,7 @@
         <nav id="mainNav">
             <a href="#features" data-i18n="nav-tech">核心技术</a>
             <a href="#specs" data-i18n="nav-specs">设计规格</a>
+            <a href="#code" data-i18n="nav-code">快速上手</a>
             <a href="#waitlist" data-i18n="nav-join">加入内测</a>
             <div class="header-tools">
                 <button id="themeToggle" class="icon-btn" title="Toggle Theme">🌓</button>
@@ -130,6 +131,51 @@
             </div>
         </section>
 
+        <!-- Code Example Section -->
+        <section id="code" class="section reveal">
+            <h2 style="text-align: center; font-size: 2.5rem;" data-i18n="code-title">快速上手</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;" data-i18n="code-desc">三行核心代码，感受 VecminDB 的 Agent 记忆引擎。</p>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">Rust</span>
+                    <span class="code-filename">main.rs</span>
+                </div>
+                <pre><span class="kw">use</span> <span class="t">vecmindb</span>::prelude::*;
+
+<span class="pp">#[tokio::main]</span>
+<span class="kw">async</span> <span class="kw">fn</span> <span class="fn">main</span>() -> <span class="t">Result</span>&lt;()&gt; {
+    <span class="cm">// 连接到 VecminDB 实例</span>
+    <span class="kw">let</span> db = <span class="t">VecminDB</span>::<span class="fn">connect</span>(<span class="s">"localhost:42678"</span>).<span class="fn">await</span>?;
+
+    <span class="cm">// 创建带 NSGA-II 优化的集合</span>
+    <span class="kw">let</span> collection = db
+        .<span class="fn">create_collection</span>(<span class="t">CollectionConfig</span> {
+            dimensions: <span class="n">768</span>,
+            index: <span class="t">IndexType</span>::<span class="v">HNSW</span>,
+            optimizer: <span class="t">Optimizer</span>::<span class="v">NSGA2</span>,
+        })
+        .<span class="fn">await</span>?;
+
+    <span class="cm">// 写入向量数据</span>
+    collection
+        .<span class="fn">insert</span>([
+            (<span class="s">"doc_1"</span>, <span class="fn">vec</span>![<span class="n">0.1</span>; <span class="n">768</span>]),
+            (<span class="s">"doc_2"</span>, <span class="fn">vec</span>![<span class="n">0.2</span>; <span class="n">768</span>]),
+        ])
+        .<span class="fn">await</span>?;
+
+    <span class="cm">// 语义检索 Top-K</span>
+    <span class="kw">let</span> results = collection
+        .<span class="fn">search</span>(<span class="fn">vec</span>![<span class="n">0.15</span>; <span class="n">768</span>])
+        .<span class="fn">top_k</span>(<span class="n">10</span>)
+        .<span class="fn">await</span>?;
+
+    <span class="en">println!</span>(<span class="s">"Found: {:?}"</span>, results);
+    <span class="t">Ok</span>(())
+}</pre>
+            </div>
+        </section>
+
         <!-- Waitlist Section -->
         <section id="waitlist" class="section">
             <div class="waitlist-container reveal">
@@ -151,6 +197,13 @@
     </main>
 
     <footer>
+        <div class="footer-mission">
+            <div class="mission-badge" data-i18n="mission-badge">BUILT FROM SCRATCH</div>
+            <p data-i18n="mission-desc">
+                VecminDB 是一个以 Rust 从头构建的开源向量数据库引擎，专注于为 AI Agent 提供长效记忆底座。
+                核心集成 NSGA-II 多目标优化、分布式事务分片与分层索引机制，旨在支撑百亿级 Agent 协作场景下的实时知识检索与持久化。
+            </p>
+        </div>
         <p>© 2024 上海灵心智算智能科技有限公司. All Rights Reserved.</p>
         <p style="font-size: 0.7rem; color: #52525b; margin-top: 10px;">
             VecminDB 系统核心算法已被提交多项发明专利申请。未经授权，任何形式的商业模仿将面临法律追责。

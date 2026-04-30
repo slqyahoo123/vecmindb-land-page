@@ -7,6 +7,7 @@ const translations = {
     'zh': {
         'nav-tech': '核心技术',
         'nav-specs': '设计规格',
+        'nav-code': '快速上手',
         'nav-join': '加入内测',
         'hero-slogan': '智算无界，灵心先行',
         'hero-title': '为 10B 阶 AI Agent 打造的<br><span class="gradient-text">长效数字化记忆</span>',
@@ -26,6 +27,10 @@ const translations = {
         'spec-recall-label': '召回率 @10',
         'spec-latency-label': 'P99 延迟',
         'spec-sdk-label': 'SDK',
+        'code-title': '快速上手',
+        'code-desc': '三行核心代码，感受 VecminDB 的 Agent 记忆引擎。',
+        'mission-badge': 'BUILT FROM SCRATCH',
+        'mission-desc': 'VecminDB 是一个以 Rust 从头构建的开源向量数据库引擎，专注于为 AI Agent 提供长效记忆底座。核心集成 NSGA-II 多目标优化、分布式事务分片与分层索引机制，旨在支撑百亿级 Agent 协作场景下的实时知识检索与持久化。',
         'wait-h': '抢先体验 VecminDB',
         'wait-p': '我们即将开启企业尊享内测，名额有限。请提交您的邮件地址，我们将第一时间与您联系。',
         'wait-checkbox': '我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》',
@@ -55,6 +60,10 @@ const translations = {
         'spec-recall-label': 'Recall @10',
         'spec-latency-label': 'P99 Latency',
         'spec-sdk-label': 'SDK',
+        'code-title': 'Quick Start',
+        'code-desc': 'Three lines of code to experience the VecminDB Agent memory engine.',
+        'mission-badge': 'BUILT FROM SCRATCH',
+        'mission-desc': 'VecminDB is an open-source vector database engine built from scratch in Rust, purpose-built as a long-term memory substrate for AI Agents. Core features include NSGA-II multi-objective optimization, distributed transaction sharding, and hierarchical indexing for real-time knowledge retrieval at billion-agent scale.',
         'wait-h': 'Experience VecminDB First',
         'wait-p': 'Exclusive enterprise beta opening soon. Limited seats available. Submit your email to be the first to know.',
         'wait-checkbox': 'I would like priority access to the "10B-Scale Agent Memory Architecture" Whitepaper.',
@@ -200,7 +209,6 @@ const initWaitlistForm = () => {
 
         // 交互反馈
         submitBtn.disabled = true;
-        const originalText = submitBtn.innerHTML;
         submitBtn.innerText = '正在预约...';
 
         setTimeout(() => {
