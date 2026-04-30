@@ -6,19 +6,26 @@
 const translations = {
     'zh': {
         'nav-tech': '核心技术',
-        'nav-vision': '企业愿景',
+        'nav-specs': '设计规格',
         'nav-join': '加入内测',
         'hero-slogan': '智算无界，灵心先行',
         'hero-title': '为 10B 阶 AI Agent 打造的<br><span class="gradient-text">长效数字化记忆</span>',
-        'hero-desc': '上海灵心智算推出的 VecminDB，是全球首款集成 NSGA-II 自进化引擎的 AI Agent 专用数据库，专为百亿级动态知识与长时记忆工作负载打造。',
+        'hero-desc': '上海灵心智算推出的 VecminDB，是集成 NSGA-II 智能优化引擎的 AI Agent 专用数据库，专为百亿级动态知识与长时记忆工作负载打造。',
         'btn-apply': '申请内测席位',
         'feat-title': 'AI Agent 记忆底座',
-        'feat-1-h': '01. 自进化感知',
-        'feat-1-p': '内置 NSGA-II 算法，实时捕捉 Agent 交互中的 Pareto 最优状态，实现记忆检索的自适应优化。',
-        'feat-2-h': '02. 百亿级并发',
-        'feat-2-p': '采用 1024 路物理分片锁机制，确保在万级 Agent 协作场景下的知识同步零延迟。',
-        'feat-3-h': '03. 动态知识感知',
-        'feat-3-p': '原生支持动态知识图谱嵌入与跨模态记忆持久化，定义 Agent 的智慧边际。',
+        'feat-1-h': '01. 智能优化引擎',
+        'feat-1-p': '内置 NSGA-II 算法，在召回率与延迟之间寻找 Pareto 最优解，实现检索性能的自动调优。',
+        'feat-2-h': '02. 10B 级吞吐',
+        'feat-2-p': '采用分布式物理分片架构，支持海量并发写入，为企业级 RAG 提供稳健的数据支撑。',
+        'feat-3-h': '03. Agent 记忆中枢',
+        'feat-3-p': '针对多 Agent 协作场景优化的动态知识索引，原生支持对话上下文与跨模态交互的高性能持久化。',
+        'spec-title': '设计规格',
+        'spec-dim-label': '向量维度',
+        'spec-index-label': '索引类型',
+        'spec-qps-label': '设计 QPS',
+        'spec-recall-label': '召回率 @10',
+        'spec-latency-label': 'P99 延迟',
+        'spec-sdk-label': 'SDK',
         'wait-h': '抢先体验 VecminDB',
         'wait-p': '我们即将开启企业尊享内测，名额有限。请提交您的邮件地址，我们将第一时间与您联系。',
         'wait-checkbox': '我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》',
@@ -28,19 +35,26 @@ const translations = {
     },
     'en': {
         'nav-tech': 'Technology',
-        'nav-vision': 'Vision',
+        'nav-specs': 'Specs',
         'nav-join': 'Join Waitlist',
         'hero-slogan': 'Intelligence Without Borders, Lingxin Leading',
         'hero-title': 'Long-term Digital Memory <br>for <span class="gradient-text">10B-Scale AI Agents</span>',
-        'hero-desc': 'Launched by Lingxin AI, VecminDB is the world\'s first high-performance database with an integrated NSGA-II engine, purpose-built for AI Agent long-term memory and dynamic knowledge workloads.',
+        'hero-desc': 'Launched by Lingxin AI, VecminDB is a high-performance database with an integrated NSGA-II engine, purpose-built for AI Agent long-term memory and dynamic knowledge workloads.',
         'btn-apply': 'Request Beta Access',
         'feat-title': 'Agent Memory Substrate',
-        'feat-1-h': '01. Self-Evolving Perception',
-        'feat-1-p': 'Standard-breaking NSGA-II algorithm finds Pareto optimal for Agent recall and latency.',
+        'feat-1-h': '01. Smart Optimization',
+        'feat-1-p': 'Built-in NSGA-II algorithm finds Pareto optimal for Agent recall and latency.',
         'feat-2-h': '02. 10B-Scale Throughput',
-        'feat-2-p': '1024-way sharded Manifold locks ensure zero-lag synchronization for collaborative Agent swarms.',
+        'feat-2-p': 'Distributed sharded architecture enables high-throughput synchronization for collaborative Agent swarms.',
         'feat-3-h': '03. Dynamic Knowledge',
         'feat-3-p': 'Native support for dynamic KG embeddings and cross-modal intent persistence at scale.',
+        'spec-title': 'Design Specs',
+        'spec-dim-label': 'Vector Dimensions',
+        'spec-index-label': 'Index Types',
+        'spec-qps-label': 'Target QPS',
+        'spec-recall-label': 'Recall @10',
+        'spec-latency-label': 'P99 Latency',
+        'spec-sdk-label': 'SDK',
         'wait-h': 'Experience VecminDB First',
         'wait-p': 'Exclusive enterprise beta opening soon. Limited seats available. Submit your email to be the first to know.',
         'wait-checkbox': 'I would like priority access to the "10B-Scale Agent Memory Architecture" Whitepaper.',
@@ -158,7 +172,13 @@ const trackEvent = (eventName, params = {}) => {
         params: params,
         session: window.sessionStorage.getItem('lx_sid') || 'anon'
     };
-    console.log(`[Lingxin-Analytics] 🚀 Event: ${eventName}`, payload);
+    console.log(`[Lingxin-Analytics] Event: ${eventName}`, payload);
+    // 生产模式下通过 sendBeacon 异步上报
+    try {
+        if (navigator.sendBeacon && APP_CONFIG.IS_PROD) {
+            navigator.sendBeacon('/api/telemetry', JSON.stringify(payload));
+        }
+    } catch (e) { /* silent */ }
 };
 
 // 3. Waitlist 表单提交交互
@@ -309,19 +329,6 @@ const initVectorViz = () => {
 
     const animate = () => {
         ctx.clearRect(0, 0, width, height);
-        
-        // --- 核心增强：绘制 1024 路流形分片背景纹理 ---
-        ctx.strokeStyle = 'rgba(59, 130, 246, 0.05)';
-        ctx.lineWidth = 0.5;
-        const cellSize = 30;
-        for (let x = 0; x < width; x += cellSize) {
-            for (let y = 0; y < height; y += cellSize) {
-                if (Math.random() > 0.995) {
-                    ctx.fillStyle = 'rgba(6, 182, 212, 0.2)';
-                    ctx.fillRect(x, y, cellSize, cellSize);
-                }
-            }
-        }
 
         clusters.forEach(c => c.update());
         
@@ -334,7 +341,6 @@ const initVectorViz = () => {
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(c.x, c.y);
-                // 模拟 Manifold 锁的连波效应
                 ctx.strokeStyle = `rgba(59, 130, 246, ${1 - dist/150 - 0.6})`;
                 ctx.stroke();
             }
@@ -414,21 +420,22 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => loader.remove(), 800);
-            }, 1000); // 确保用户能感受到品牌入场感
+            }, 400);
         }
     }, 100);
 
     // 性能心跳记录 (Telemetry)
     if (window.performance) {
         window.addEventListener('load', () => {
-            const timing = window.performance.getEntriesByType('navigation')[0];
-            console.log(`[Lingxin-Telemetry] Core Loaded in ${timing.duration.toFixed(2)}ms`);
-            
-            // 初始展示追踪
-            trackEvent('Page_View', { 
-                referrer: document.referrer, 
-                loadTime: timing.duration 
-            });
+            const entries = window.performance.getEntriesByType('navigation');
+            const timing = entries[0];
+            if (timing) {
+                console.log(`[Lingxin-Telemetry] Core Loaded in ${timing.duration.toFixed(2)}ms`);
+                trackEvent('Page_View', {
+                    referrer: document.referrer,
+                    loadTime: timing.duration
+                });
+            }
         });
     }
 });
