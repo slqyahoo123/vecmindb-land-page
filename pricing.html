@@ -78,37 +78,5 @@
     <footer style="margin-top:40px;font-size:13px;color:#94a3b8;text-align:center;">
         <p>© 2026 LingxinMind Technology Co., Ltd. — All products available for licensing.</p>
     </footer>
-    <script src="https://www.paypal.com/sdk/js?client-id=ASJcyxo1zdZUBvYZepiFL1tUARTCoLEkQgiVCmhrZ5i26voDZxG5QDD3B2R6SLseSnhauG2IwnHi9en1&vault=true&intent=subscription" data-sdk-integration-source="button-factory" data-namespace="paypal_sdk"></script>
-    <script>
-      function renderPayPal() {
-        if (typeof paypal_sdk === 'undefined') {
-          setTimeout(renderPayPal, 500);
-          return;
-        }
-        paypal_sdk.Buttons({
-          style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'subscribe' },
-          createSubscription: function(data, actions) {
-            return actions.subscription.create({ plan_id: 'P-9RD48572XF8523849NHZSPKA' });
-          },
-          onApprove: function(data, actions) {
-            var email = prompt('Enter your email to receive license key:');
-            if (email) {
-              fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, subscriptionId: data.subscriptionID })
-              })
-              .then(function(r) { return r.json(); })
-              .then(function(d) {
-                if (d.key) alert('✅ License key: ' + d.key + '\n\nEnter this in any V3 extension to unlock Pro!');
-                else alert('Error: ' + (d.error || 'unknown'));
-              })
-              .catch(function() { alert('Error connecting to license server.'); });
-            }
-          }
-        }).render('#paypal-button-container-P-9RD48572XF8523849NHZSPKA');
-      }
-      renderPayPal();
-    </script>
 </body>
 </html>
