@@ -27,6 +27,12 @@
             <div class="price">$499<span>/mo</span></div>
             <p>Next-generation vector database for AI Agent memory and dynamic knowledge base</p>
         </div>
+        <div class="card highlight">
+            <h3>V3 Extensions Pro Bundle <span class="badge">Popular</span></h3>
+            <div class="price">$2.99<span>/mo</span></div>
+            <p>Unlock Pro features across ALL V3 extensions: Video Speed, OCR Invoice Parser, SEO Meta Preview, Ghost Beautifier and more.</p>
+            <div id="paypal-button-container-P-9RD48572XF8523849NHZSPKA"></div>
+        </div>
         <div class="card">
             <h3>Video Speed Controller Pro <span class="badge">Extension</span></h3>
             <div class="price">$2.99<span>/mo</span></div>
@@ -67,5 +73,17 @@
     <footer style="margin-top:40px;font-size:13px;color:#94a3b8;text-align:center;">
         <p>© 2026 LingxinMind Technology Co., Ltd. — All products available for licensing.</p>
     </footer>
+    <script src="https://www.paypal.com/sdk/js?client-id=ASJcyxo1zdZUBvYZepiFL1tUARTCoLEkQgiVCmhrZ5i26voDZxG5QDD3B2R6SLseSnhauG2IwnHi9en1&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+    <script>
+      paypal.Buttons({
+          style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'paypal' },
+          createSubscription: function(data, actions) {
+            return actions.subscription.create({ plan_id: 'P-9RD48572XF8523849NHZSPKA' });
+          },
+          onApprove: function(data, actions) {
+            alert('Subscription successful! ID: ' + data.subscriptionID + '. You will receive your license key via email shortly.');
+          }
+      }).render('#paypal-button-container-P-9RD48572XF8523849NHZSPKA');
+    </script>
 </body>
 </html>
