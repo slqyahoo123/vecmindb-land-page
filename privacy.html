@@ -4,41 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — LingxinMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #fff; color: #1e293b; }
-        h1 { font-size: 28px; }
-        h2 { font-size: 18px; margin-top: 32px; }
-        p { font-size: 14px; line-height: 1.8; color: #475569; }
+        :root {
+            --bg: #050508;
+            --text: #fff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent2: #06b6d4;
+            --border: rgba(255,255,255,0.08);
+            --gradient: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(5,5,8,0.9);
+            backdrop-filter: blur(12px); z-index: 10;
+        }
+        .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav a:hover { color: var(--text); }
+        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); }
+        main {
+            max-width: 760px; margin: 0 auto; padding: 60px 24px 80px;
+        }
+        h1 { font-size: 36px; font-weight: 800; }
+        h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .updated { color: var(--text-secondary); font-size: 13px; margin: 8px 0 40px; }
+        h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; }
+        p { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
+        footer {
+            text-align: center; padding: 24px; color: var(--text-secondary);
+            font-size: 12px; border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p><strong>Last updated:</strong> April 29, 2026</p>
-
-    <h2>1. Information We Collect</h2>
-    <p>Our browser extensions and SaaS products collect minimal data necessary to function. This may include: license keys, email addresses for account purposes, and usage preferences stored locally on your device.</p>
-
-    <h2>2. How We Use Information</h2>
-    <p>We use collected information solely to provide and improve our Services. We do not sell, rent, or share personal data with third parties.</p>
-
-    <h2>3. Data Storage</h2>
-    <p>Extension preferences are stored locally via Chrome Storage API. SaaS account data is stored securely on our servers. Payment information is handled entirely by Paddle, our payment processor.</p>
-
-    <h2>4. Third-Party Services</h2>
-    <p>We use Paddle for payment processing. Your payment data is subject to Paddle's privacy policy. We do not store credit card information.</p>
-
-    <h2>5. Data Retention</h2>
-    <p>We retain your data only as long as necessary to provide Services or as required by law.</p>
-
-    <h2>6. Your Rights</h2>
-    <p>You may request access to, correction of, or deletion of your personal data by contacting us.</p>
-
-    <h2>7. Changes</h2>
-    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page.</p>
-
-    <h2>8. Contact</h2>
-    <p>For privacy-related inquiries, contact us through the channels listed on our website.</p>
-
-    <p style="margin-top:40px;font-size:13px;color:#94a3b8;">© 2026 LingxinMind Technology Co., Ltd.</p>
+    <div class="nav">
+        <a href="/" class="brand">灵心智算 | LINGXIN AI</a>
+        <a href="/">← Home</a>
+    </div>
+    <main>
+        <h1>Privacy <span>Policy</span></h1>
+        <p class="updated">Last updated: April 30, 2026</p>
+        <h2>1. Information We Collect</h2>
+        <p>Our products collect minimal data necessary to function: license keys and email addresses for account purposes, and usage preferences stored locally on your device.</p>
+        <h2>2. How We Use Information</h2>
+        <p>We use collected information solely to provide and improve our Services. We do not sell, rent, or share personal data with third parties.</p>
+        <h2>3. Data Storage</h2>
+        <p>Extension preferences are stored locally via Chrome Storage API. SaaS account data is stored securely on our servers. Payment information is handled entirely by PayPal — we do not store credit card or banking information.</p>
+        <h2>4. Third-Party Services</h2>
+        <p>We use PayPal for payment processing. Your payment data is subject to PayPal's privacy policy.</p>
+        <h2>5. Data Retention</h2>
+        <p>We retain your data only as long as necessary to provide Services or as required by law.</p>
+        <h2>6. Your Rights</h2>
+        <p>You may request access to, correction of, or deletion of your personal data by contacting us.</p>
+        <h2>7. Changes</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page.</p>
+        <h2>8. Contact</h2>
+        <p>For privacy-related inquiries, contact us through the channels listed on our website.</p>
+    </main>
+    <footer>
+        © 2026 Shanghai Lingxin Zhizuan Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
+    </footer>
 </body>
 </html>

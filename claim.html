@@ -3,59 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claim License Key — LingxinMind</title>
+    <title>Claim License — LingxinMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 500px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-        h1 { font-size: 24px; }
-        p { color: #64748b; }
-        input, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 16px; box-sizing: border-box; }
-        button { background: #3b82f6; color: #fff; border: none; cursor: pointer; }
-        button:disabled { background: #94a3b8; }
-        #result { margin-top: 20px; padding: 16px; border-radius: 8px; display: none; }
-        #result.success { background: #dcfce7; color: #166534; display: block; }
-        #result.error { background: #fee2e2; color: #991b1b; display: block; }
+        :root {
+            --bg: #050508;
+            --text: #fff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent2: #06b6d4;
+            --border: rgba(255,255,255,0.08);
+            --card: rgba(255,255,255,0.03);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px; border-bottom: 1px solid var(--border);
+        }
+        .nav a {
+            color: var(--text-secondary); text-decoration: none; font-size: 14px;
+            transition: color 0.2s;
+        }
+        .nav a:hover { color: var(--text); }
+        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); }
+        main {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 60px 20px;
+        }
+        .box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            max-width: 480px; width: 100%;
+        }
+        h1 { font-size: 24px; font-weight: 800; }
+        h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sub { color: var(--text-secondary); font-size: 14px; margin: 12px 0 32px; }
+        input {
+            width: 100%; padding: 14px 16px; border-radius: 10px;
+            border: 1px solid var(--border); background: rgba(255,255,255,0.05);
+            color: var(--text); font-size: 15px; margin-bottom: 12px;
+            font-family: inherit; outline: none;
+        }
+        input:focus { border-color: var(--accent); }
+        button {
+            width: 100%; padding: 14px; border-radius: 10px; border: none;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff; font-size: 16px; font-weight: 600; cursor: pointer;
+            font-family: inherit;
+        }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        #result { margin-top: 20px; border-radius: 10px; padding: 16px; display: none; }
+        #result.success { display: block; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); }
+        #result.error { display: block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+        #result code { font-size: 16px; word-break: break-all; font-family: monospace; color: var(--accent2); }
+        footer {
+            text-align: center; padding: 24px; color: var(--text-secondary);
+            font-size: 12px; border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>Claim Your License Key</h1>
-    <p>Enter your PayPal email and subscription ID to receive your V3 Pro license key.</p>
-    <input type="email" id="email" placeholder="PayPal email used for payment" required>
-    <input type="text" id="subId" placeholder="Subscription ID (from PayPal receipt)" required>
-    <button id="claimBtn" onclick="claimKey()">Get License Key</button>
-    <div id="result"></div>
-
+    <div class="nav">
+        <a href="/" class="brand">灵心智算 | LINGXIN AI</a>
+        <a href="/pricing.html">← Back to Pricing</a>
+    </div>
+    <main>
+        <div class="box">
+            <h1>Claim Your <span>License Key</span></h1>
+            <p class="sub">Enter your PayPal email and subscription ID to receive your V3 Pro license key.</p>
+            <input type="email" id="email" placeholder="PayPal email used for payment">
+            <input type="text" id="subId" placeholder="Subscription ID (from PayPal receipt)">
+            <button id="btn" onclick="claim()">Get License Key</button>
+            <div id="result"></div>
+        </div>
+    </main>
+    <footer>
+        © 2026 Shanghai Lingxin Zhizuan Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
+    </footer>
     <script>
-    function claimKey() {
+    function claim() {
         var email = document.getElementById('email').value.trim();
         var subId = document.getElementById('subId').value.trim();
-        if (!email || !subId) { alert('Please fill in both fields.'); return; }
-
-        var btn = document.getElementById('claimBtn');
-        btn.disabled = true; btn.textContent = 'Processing...';
-
-        fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, subscriptionId: subId })
+        if(!email||!subId){alert('Please fill in both fields.');return;}
+        var btn=document.getElementById('btn'), r=document.getElementById('result');
+        btn.disabled=true; btn.textContent='Processing...';
+        fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal',{
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({email:email,subscriptionId:subId})
         })
-        .then(function(r) { return r.json(); })
-        .then(function(d) {
-            var el = document.getElementById('result');
-            if (d.key) {
-                el.className = 'success';
-                el.innerHTML = '<strong>Your license key:</strong><br><br><code style="font-size:18px;word-break:break-all;">' + d.key + '</code><br><br>Enter this in any V3 extension to unlock Pro.';
-            } else {
-                el.className = 'error';
-                el.textContent = 'Error: ' + (d.error || 'Unknown error');
-            }
+        .then(function(x){return x.json();})
+        .then(function(d){
+            if(d.key){r.className='success';r.innerHTML='<strong>Your license key:</strong><br><br><code>'+d.key+'</code><br><br>Enter this in any V3 extension to unlock Pro.';}
+            else{r.className='error';r.textContent='Error: '+(d.error||'Unknown');}
         })
-        .catch(function() {
-            document.getElementById('result').className = 'error';
-            document.getElementById('result').textContent = 'Server unreachable. Contact support.';
-        })
-        .then(function() {
-            btn.disabled = false; btn.textContent = 'Get License Key';
-        });
+        .catch(function(){r.className='error';r.textContent='Server unreachable. Contact support.';})
+        .then(function(){btn.disabled=false;btn.textContent='Get License Key';});
     }
     </script>
 </body>

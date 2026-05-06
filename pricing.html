@@ -4,113 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing — LingxinMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #f8fafc; color: #1e293b; }
-        h1 { font-size: 28px; margin-bottom: 8px; }
-        .subtitle { color: #64748b; margin-bottom: 32px; }
-        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-        .card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .card h3 { margin: 0 0 8px; font-size: 16px; }
-        .card .price { font-size: 24px; font-weight: 700; color: #3b82f6; }
-        .card .price span { font-size: 14px; font-weight: 400; color: #64748b; }
-        .card p { font-size: 14px; color: #475569; margin: 8px 0 0; }
-        .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; background: #e2e8f0; }
-        .highlight { border: 2px solid #3b82f6; }
-        .paypal-btn { display: inline-block; margin-top: 12px; padding: 12px 24px; background: #ffc439; color: #111; text-decoration: none; border-radius: 24px; font-weight: 600; }
-        .note { font-size: 12px; color: #94a3b8; margin-top: 8px; }
-        .note a { color: #3b82f6; }
+        :root {
+            --bg: #050508;
+            --text: #fff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent2: #06b6d4;
+            --border: rgba(255,255,255,0.08);
+            --card: rgba(255,255,255,0.03);
+            --gradient: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(5,5,8,0.9);
+            backdrop-filter: blur(12px); z-index: 10;
+        }
+        .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav a:hover { color: var(--text); }
+        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); }
+        .hero {
+            text-align: center; padding: 80px 20px 40px;
+        }
+        .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; }
+        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-secondary); font-size: 18px; margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 20px 80px;
+        }
+        .card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 32px; transition: border-color 0.3s;
+        }
+        .card:hover { border-color: rgba(255,255,255,0.2); }
+        .card.popular { border-color: var(--accent); }
+        .card.popular::before {
+            content: 'Popular';
+            display: inline-block; background: var(--gradient); color: #fff;
+            font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .card .category {
+            display: inline-block; font-size: 11px; padding: 3px 10px;
+            border-radius: 6px; background: rgba(255,255,255,0.06);
+            color: var(--text-secondary); margin-bottom: 12px;
+        }
+        .card .price { font-size: 36px; font-weight: 800; margin: 12px 0 4px; }
+        .card .price span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
+        .card .desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+        .card .btn {
+            display: block; text-align: center; padding: 12px; border-radius: 10px;
+            font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--gradient); color: #fff;
+        }
+        .btn-outline {
+            border: 1px solid var(--border); color: var(--text);
+        }
+        .btn-outline:hover { border-color: var(--accent); }
+        .note {
+            text-align: center; color: var(--text-secondary); font-size: 13px; padding: 0 20px 40px;
+        }
+        .note a { color: var(--accent); }
+        footer {
+            text-align: center; padding: 24px; color: var(--text-secondary);
+            font-size: 12px; border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>LingxinMind Products & Pricing</h1>
-    <p class="subtitle">AI infrastructure, productivity tools, and SaaS platforms</p>
-
+    <div class="nav">
+        <a href="/" class="brand">灵心智算 | LINGXIN AI</a>
+        <a href="/">← Home</a>
+    </div>
+    <section class="hero">
+        <h1>Choose Your <span>Plan</span></h1>
+        <p>AI infrastructure, productivity tools, and SaaS platforms for developers and businesses worldwide.</p>
+    </section>
     <div class="grid">
-        <div class="card">
-            <h3>VecMinDB <span class="badge">AI Infrastructure</span></h3>
-            <div class="price">$499<span>/mo</span></div>
-            <p>Next-generation vector database for AI Agent memory and dynamic knowledge base</p>
-        </div>
-        <div class="card highlight">
-            <h3>V3 Extensions Pro Bundle <span class="badge">Popular</span></h3>
+        <div class="card popular">
+            <span class="category">Popular</span>
+            <h3>V3 Extensions Pro Bundle</h3>
             <div class="price">$2.99<span>/mo</span></div>
-            <p>Unlock Pro features across ALL V3 extensions: Video Speed, OCR Invoice Parser, SEO Meta Preview, Ghost Beautifier and more.</p>
+            <p class="desc">Unlock Pro features across all 13 V3 extensions: Video Speed, OCR Invoice Parser, SEO Meta Preview, Ghost Beautifier, and more.</p>
             <div id="paypal-button-container-P-9RD48572XF8523849NHZSPKA">
-                <p style="color:#94a3b8;font-size:12px;">(PayPal not available in mainland China; your overseas customers can subscribe normally)</p>
+                <p style="color:var(--text-secondary);font-size:12px;">PayPal not available in mainland China; overseas customers can subscribe normally.</p>
             </div>
+            <p class="note" style="margin-top:12px;">After subscribing, <a href="/claim.html">claim your license key →</a></p>
         </div>
         <div class="card">
-            <h3>Video Speed Controller Pro <span class="badge">Extension</span></h3>
-            <div class="price">$2.99<span>/mo</span></div>
-            <p>Premium HTML5 video speed control up to 16x with per-domain persistence</p>
+            <span class="category">AI Infrastructure</span>
+            <h3>VecMinDB</h3>
+            <div class="price">$499<span>/mo</span></div>
+            <p class="desc">Next-generation vector database for AI Agent memory with NSGA-II optimization and dynamic knowledge retrieval.</p>
+            <a href="/" class="btn btn-outline">Learn More</a>
         </div>
         <div class="card">
-            <h3>Ghost Beautifier <span class="badge">Extension</span></h3>
-            <div class="price">$2.99<span>/mo</span></div>
-            <p>Premium typography and Zen skins for Ghost CMS and Substack</p>
-        </div>
-        <div class="card">
-            <h3>OCR Invoice Parser <span class="badge">Extension</span></h3>
-            <div class="price">$2.99<span>/mo</span></div>
-            <p>Real-time invoice data extraction with Tesseract.js OCR engine</p>
-        </div>
-        <div class="card">
-            <h3>SEO Meta Preview <span class="badge">Extension</span></h3>
-            <div class="price">$2.99<span>/mo</span></div>
-            <p>AI-powered meta tag optimization and social preview checker</p>
-        </div>
-        <div class="card">
-            <h3>Pet Booking System <span class="badge">SaaS</span></h3>
+            <span class="category">SaaS</span>
+            <h3>Pet Booking System</h3>
             <div class="price">$19<span>/mo</span></div>
-            <p>Online booking and scheduling platform for pet grooming businesses</p>
+            <p class="desc">Online booking and scheduling platform for pet grooming and daycare businesses.</p>
+            <a href="#" class="btn btn-outline">Coming Soon</a>
         </div>
         <div class="card">
-            <h3>Status Page Hub <span class="badge">SaaS</span></h3>
+            <span class="category">SaaS</span>
+            <h3>Status Page Hub</h3>
             <div class="price">$9<span>/mo</span></div>
-            <p>Uptime monitoring and status page hosting for small teams</p>
+            <p class="desc">Uptime monitoring and status page hosting for small teams and startups.</p>
+            <a href="#" class="btn btn-outline">Coming Soon</a>
         </div>
         <div class="card">
-            <h3>MD Resume Generator <span class="badge">SaaS</span></h3>
+            <span class="category">SaaS</span>
+            <h3>MD Resume Generator</h3>
             <div class="price">$4.99<span>/one-time</span></div>
-            <p>Markdown-to-professional-resume converter with multiple templates</p>
+            <p class="desc">Markdown-to-professional-resume converter with beautiful templates.</p>
+            <a href="#" class="btn btn-outline">Coming Soon</a>
         </div>
     </div>
-
-    <footer style="margin-top:40px;font-size:13px;color:#94a3b8;text-align:center;">
-        <p>© 2026 LingxinMind Technology Co., Ltd. — All products available for licensing.</p>
+    <footer>
+        © 2026 Shanghai Lingxin Zhizuan Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
     </footer>
     <script src="https://www.paypal.com/sdk/js?client-id=ASJcyxo1zdZUBvYZepiFL1tUARTCoLEkQgiVCmhrZ5i26voDZxG5QDD3B2R6SLseSnhauG2IwnHi9en1&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
     <script>
       if (typeof paypal !== 'undefined' && paypal.Buttons) {
       paypal.Buttons({
-          style: {
-              shape: 'pill',
-              color: 'gold',
-              layout: 'vertical',
-              label: 'paypal'
-          },
-          createSubscription: function(data, actions) {
-            return actions.subscription.create({
-              plan_id: 'P-9RD48572XF8523849NHZSPKA'
-            });
-          },
-          onApprove: function(data, actions) {
-            var email = prompt('Enter your email to receive your license key:');
-            if (email) {
-              fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, subscriptionId: data.subscriptionID })
-              })
-              .then(function(r) { return r.json(); })
-              .then(function(d) {
-                if (d.key) alert('License key: ' + d.key);
-                else alert('Error');
-              })
-              .catch(function() { alert('Server error, contact support.'); });
-            } else {
-              alert('Subscription ID: ' + data.subscriptionID);
-            }
+          style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'paypal' },
+          createSubscription: function(d,a){ return a.subscription.create({ plan_id: 'P-9RD48572XF8523849NHZSPKA' }); },
+          onApprove: function(d,a){
+            var e=prompt('Enter your email to receive your license key:');
+            if(e){
+              fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal',{
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({email:e, subscriptionId:d.subscriptionID})
+              }).then(function(r){return r.json();}).then(function(j){
+                if(j.key) alert('License key: '+j.key); else alert('Error');
+              }).catch(function(){alert('Server error.');});
+            }else{alert('Subscription ID: '+d.subscriptionID);}
           }
       }).render('#paypal-button-container-P-9RD48572XF8523849NHZSPKA');
       }

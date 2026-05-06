@@ -4,29 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Refund Policy — LingxinMind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; background: #fff; color: #1e293b; }
-        h1 { font-size: 28px; }
-        h2 { font-size: 18px; margin-top: 32px; }
-        p { font-size: 14px; line-height: 1.8; color: #475569; }
+        :root {
+            --bg: #050508;
+            --text: #fff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent2: #06b6d4;
+            --border: rgba(255,255,255,0.08);
+            --gradient: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 40px; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(5,5,8,0.9);
+            backdrop-filter: blur(12px); z-index: 10;
+        }
+        .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav a:hover { color: var(--text); }
+        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); }
+        main {
+            max-width: 760px; margin: 0 auto; padding: 60px 24px 80px;
+        }
+        h1 { font-size: 36px; font-weight: 800; }
+        h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .updated { color: var(--text-secondary); font-size: 13px; margin: 8px 0 40px; }
+        h2 { font-size: 20px; font-weight: 700; margin: 40px 0 12px; }
+        p { color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
+        footer {
+            text-align: center; padding: 24px; color: var(--text-secondary);
+            font-size: 12px; border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>Refund Policy</h1>
-    <p><strong>Last updated:</strong> April 29, 2026</p>
-
-    <h2>14-Day Money-Back Guarantee</h2>
-    <p>We offer a 14-day refund policy for all LingxinMind products and Services. If you are not satisfied with your purchase, contact us within 14 days of the purchase date for a full refund.</p>
-
-    <h2>Subscription Cancellation</h2>
-    <p>Monthly subscriptions can be canceled at any time. Upon cancellation, you will continue to have access to the purchased Services until the end of the current billing period.</p>
-
-    <h2>How to Request a Refund</h2>
-    <p>Contact our support team through the channels on our website with your purchase details. We will process your refund within 5-10 business days.</p>
-
-    <h2>Exceptions</h2>
-    <p>Enterprise licenses and custom agreements may be subject to different refund terms as specified in the applicable contract.</p>
-
-    <p style="margin-top:40px;font-size:13px;color:#94a3b8;">© 2026 LingxinMind Technology Co., Ltd.</p>
+    <div class="nav">
+        <a href="/" class="brand">灵心智算 | LINGXIN AI</a>
+        <a href="/">← Home</a>
+    </div>
+    <main>
+        <h1>Refund <span>Policy</span></h1>
+        <p class="updated">Last updated: April 30, 2026</p>
+        <h2>14-Day Money-Back Guarantee</h2>
+        <p>We offer a 14-day refund policy for all LingxinMind products and Services. If you are not satisfied with your purchase, contact us within 14 days of the purchase date for a full refund.</p>
+        <h2>Subscription Cancellation</h2>
+        <p>Monthly subscriptions can be canceled at any time. Upon cancellation, you will continue to have access to the purchased Services until the end of the current billing period.</p>
+        <h2>How to Request a Refund</h2>
+        <p>Contact our support team through the channels on our website with your purchase details. We will process your refund within 5–10 business days.</p>
+        <h2>Exceptions</h2>
+        <p>Enterprise licenses and custom agreements may be subject to different refund terms as specified in the applicable contract.</p>
+    </main>
+    <footer>
+        © 2026 Shanghai Lingxin Zhizuan Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
+    </footer>
 </body>
 </html>
