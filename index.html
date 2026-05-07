@@ -181,17 +181,13 @@
             <div class="waitlist-container reveal">
                 <h2 style="margin-bottom: 1rem;" data-i18n="wait-h">抢先体验 VecminDB</h2>
                 <p style="color: var(--text-secondary);" data-i18n="wait-p">我们即将开启企业尊享内测，名额有限。请提交您的邮件地址，我们将第一时间与您联系。</p>
-                <form id="waitlistForm" class="waitlist-form" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="7102a363-b2c7-4d07-b39f-8af5f8cdaf56">
+                <form id="waitlistForm" class="waitlist-form" action="https://license-server-production-3cf0.up.railway.app/api/waitlist" method="POST">
                     <input type="text" name="name" id="userName" placeholder="您的姓名" style="display: none;">
                     <input type="email" name="email" id="userEmail" data-i18n="input-placeholder" placeholder="输入您的企业邮箱..." required>
                     <div class="waitlist-options">
                         <input type="checkbox" name="whitepaper" id="whitepaper">
                         <label for="whitepaper" data-i18n="wait-checkbox">我希望优先获取《10B 阶 Agent 记忆架构技术白皮书》</label>
                     </div>
-                    <input type="hidden" name="_replyto" id="hiddenReplyto" value="">
-                    <input type="hidden" name="_subject" value="[VecminDB] 新内测申请">
-                    <input type="hidden" name="_captcha" value="false">
                     <button type="submit" id="submitBtn" class="btn-primary" data-i18n="btn-submit">预约席位</button>
                 </form>
                 <div id="formFeedback" style="margin-top: 1rem; display: none; color: var(--accent-secondary); font-weight: 600;" data-i18n="feedback">

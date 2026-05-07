@@ -226,11 +226,16 @@ const initWaitlistForm = () => {
         submitBtn.innerText = '正在提交...';
 
         try {
-            const fd = new FormData(form);
+            const email = emailInput.value;
+            const whitepaper = document.getElementById('whitepaper');
             const resp = await fetch(form.action, {
                 method: 'POST',
-                body: fd,
-                headers: { 'Accept': 'application/json' }
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    name: document.getElementById('userName')?.value || '',
+                    whitepaper: whitepaper ? whitepaper.checked : false
+                })
             });
             const data = await resp.json();
 
