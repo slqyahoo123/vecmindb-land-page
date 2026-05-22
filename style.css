@@ -358,7 +358,7 @@ nav a:hover {
     font-size: 1rem;
 }
 
-.waitlist-container {
+.viz-container {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
@@ -369,52 +369,6 @@ nav a:hover {
     backdrop-filter: blur(20px);
 }
 
-.waitlist-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 2rem;
-}
-
-.waitlist-form input {
-    flex: 1;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--glass-border);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    color: white;
-    font-size: 1rem;
-}
-
-.waitlist-form button {
-    background: var(--gradient-aurora);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.waitlist-options {
-    margin-top: 1.2rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    text-align: left;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-.waitlist-options input[type="checkbox"] {
-    margin-top: 3px;
-    accent-color: var(--accent-primary);
-    cursor: pointer;
-}
-
-.waitlist-options label {
-    cursor: pointer;
-    line-height: 1.4;
-}
 
 footer {
     padding: 4rem 5%;

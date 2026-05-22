@@ -14,6 +14,7 @@ const translations = {
         'hero-desc': 'VecminDB 是专为 AI Agent 打造的闭源记忆引擎。不是存向量——是自动遗忘、蒸馏、联邦。Docker 一行启动，数据永不离开你的机器。',
         'btn-start': 'Docker 一行启动',
         'btn-pricing': '查看定价',
+        'btn-github': 'GitHub SDK',
         'feat-title': '为什么不是向量数据库',
         'feat-subtitle': 'Pinecone 给了 Agent 一个硬盘。VecminDB 给了 Agent 一个会自己遗忘、蒸馏、联邦的脑子。',
         'feat-1-h': '自动遗忘 (LTSM)',
@@ -63,6 +64,7 @@ const translations = {
         'hero-desc': 'VecminDB is a proprietary memory engine for AI agents. Not vector storage — automatic forgetting, distillation, and federation. One Docker command. Data never leaves your machine.',
         'btn-start': 'Docker Run',
         'btn-pricing': 'See Pricing',
+        'btn-github': 'GitHub SDK',
         'feat-title': 'Why Not a Vector Database',
         'feat-subtitle': 'Pinecone gave your agent a hard drive. VecminDB gave it a brain that forgets, distills, and federates on its own.',
         'feat-1-h': 'Automatic Forgetting (LTSM)',
@@ -221,48 +223,13 @@ const trackEvent = (eventName, params = {}) => {
     } catch (e) { /* silent */ }
 };
 
-// 3. Waitlist 表单提交交互
-const initWaitlistForm = () => {
-    const form = document.getElementById('waitlistForm');
-    const feedback = document.getElementById('formFeedback');
-    const submitBtn = document.getElementById('submitBtn');
-
-    if (!form || !submitBtn) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const emailInput = document.getElementById('userEmail');
-        const replyto = document.getElementById('hiddenReplyto');
-        if (replyto && emailInput) replyto.value = emailInput.value;
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = '正在提交...';
-
-        try {
-            const fd = new FormData(form);
-            const resp = await fetch(form.action, {
-                method: 'POST',
-                body: fd,
-                headers: { 'Accept': 'application/json' }
-            });
-            const data = await resp.json();
-
-            trackEvent('Waitlist_Submit', { email: emailInput.value, success: data.success });
-
-            if (data.success) {
-                form.style.display = 'none';
-                if (feedback) feedback.style.display = 'block';
-            } else {
-                submitBtn.disabled = false;
-                submitBtn.innerText = '预约席位';
-                alert('提交失败，请稍后重试。');
-            }
-        } catch (err) {
-            trackEvent('Waitlist_Submit', { email: emailInput.value, error: String(err) });
-            submitBtn.disabled = false;
-            submitBtn.innerText = '预约席位';
-            alert('网络错误，请检查连接后重试。');
-        }
+// 3. CTA 点击追踪
+const initCTATracking = () => {
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const text = btn.textContent?.trim() || 'unknown';
+            trackEvent('CTA_Click', { button: text });
+        });
     });
 };
 
@@ -421,7 +388,7 @@ const initVectorViz = () => {
 // 初始化启动
 document.addEventListener('DOMContentLoaded', () => {
     initNexusEffect();
-    initWaitlistForm();
+    initCTATracking();
     initScrollReveal();
     initVectorViz();
 
