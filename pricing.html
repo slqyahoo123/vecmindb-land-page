@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing — LingxinMind</title>
+    <title>Pricing — VecminDB</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -31,53 +31,54 @@
             position: sticky; top: 0; background: rgba(5,5,8,0.9);
             backdrop-filter: blur(12px); z-index: 10;
         }
-        .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .nav a { color: var(--text-secondary); text-decoration: none; font-size: 14px; transition: color 0.2s; margin-left: 24px; }
         .nav a:hover { color: var(--text); }
-        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); }
+        .nav .brand { font-weight: 800; font-size: 16px; color: var(--text); margin-left: 0; }
+        .nav-links { display: flex; align-items: center; }
         .hero {
             text-align: center; padding: 80px 20px 40px;
         }
         .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; }
         .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-secondary); font-size: 18px; margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero p { color: var(--text-secondary); font-size: 18px; margin-top: 16px; max-width: 650px; margin-left: auto; margin-right: auto; line-height: 1.6; }
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 20px 80px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 20px 0;
         }
         .card {
             background: var(--card); border: 1px solid var(--border);
             border-radius: 16px; padding: 32px; transition: border-color 0.3s;
         }
         .card:hover { border-color: rgba(255,255,255,0.2); }
-        .card.popular { border-color: var(--accent); }
+        .card.popular { border-color: var(--accent); position: relative; }
         .card.popular::before {
-            content: 'Popular';
+            content: 'Most Popular';
             display: inline-block; background: var(--gradient); color: #fff;
             font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 100px;
-            margin-bottom: 16px;
+            margin-bottom: 16px; position: absolute; top: -12px;
         }
-        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
         .card .category {
             display: inline-block; font-size: 11px; padding: 3px 10px;
             border-radius: 6px; background: rgba(255,255,255,0.06);
-            color: var(--text-secondary); margin-bottom: 12px;
+            color: var(--text-secondary); margin-bottom: 16px;
         }
         .card .price { font-size: 36px; font-weight: 800; margin: 12px 0 4px; }
         .card .price span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
         .card .desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+        .card ul { list-style: none; margin-bottom: 20px; }
+        .card ul li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; }
+        .card ul li::before { content: '✓ '; color: var(--accent2); }
         .card .btn {
             display: block; text-align: center; padding: 12px; border-radius: 10px;
             font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s;
         }
-        .btn-primary {
-            background: var(--gradient); color: #fff;
-        }
-        .btn-outline {
-            border: 1px solid var(--border); color: var(--text);
-        }
+        .btn-primary { background: var(--gradient); color: #fff; }
+        .btn-outline { border: 1px solid var(--border); color: var(--text); }
         .btn-outline:hover { border-color: var(--accent); }
         .note {
-            text-align: center; color: var(--text-secondary); font-size: 13px; padding: 0 20px 40px;
+            text-align: center; color: var(--text-secondary); font-size: 13px;
+            padding: 40px 20px; max-width: 700px; margin: 0 auto; line-height: 1.8;
         }
         .note a { color: var(--accent); }
         footer {
@@ -89,75 +90,99 @@
 </head>
 <body>
     <div class="nav">
-        <a href="/" class="brand">灵心智算 | LINGXIN AI</a>
-        <a href="/">← Home</a>
+        <a href="/" class="brand">VecminDB</a>
+        <div class="nav-links">
+            <a href="/#features">Features</a>
+            <a href="/#quickstart">Quick Start</a>
+            <a href="/pricing.html">Pricing</a>
+        </div>
     </div>
+
     <section class="hero">
-        <h1>Choose Your <span>Plan</span></h1>
-        <p>AI infrastructure, productivity tools, and SaaS platforms for developers and businesses worldwide.</p>
+        <h1>Per <span>Agent</span>, Not Per Vector</h1>
+        <p>Vector databases charge by storage — your bill grows with every conversation. VecminDB charges by the number of agents you run. LTSM distillation means storage <strong>converges</strong> over time, not diverges. Your bill stays predictable.</p>
     </section>
+
     <div class="grid">
+        <!-- Free -->
+        <div class="card">
+            <span class="category">Individual</span>
+            <h3>Free</h3>
+            <div class="price">$0<span>/forever</span></div>
+            <p class="desc">For individual developers and side projects. Full LTSM distillation included — no credit card required.</p>
+            <ul>
+                <li>5 Agents</li>
+                <li>100K vectors per agent</li>
+                <li>1 Node</li>
+                <li>LTSM decay & distillation</li>
+                <li>Built-in ONNX embedding</li>
+                <li>Community support (Discord)</li>
+            </ul>
+            <a href="/#quickstart" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <!-- Pro -->
         <div class="card popular">
-            <span class="category">Popular</span>
-            <h3>V3 Extensions Pro Bundle</h3>
-            <div class="price">$2.99<span>/mo</span></div>
-            <p class="desc">Unlock Pro features across all 13 V3 extensions: Video Speed, OCR Invoice Parser, SEO Meta Preview, Ghost Beautifier, and more.</p>
-            <div id="paypal-button-container-P-9RD48572XF8523849NHZSPKA">
-                <p style="color:var(--text-secondary);font-size:12px;">PayPal not available in mainland China; overseas customers can subscribe normally.</p>
-            </div>
-            <p class="note" style="margin-top:12px;">After subscribing, <a href="/claim.html">claim your license key →</a></p>
+            <span class="category">Professional</span>
+            <h3>Pro</h3>
+            <div class="price">$49<span>/mo</span></div>
+            <p class="desc">For freelancers and small AI teams running agent-based products.</p>
+            <ul>
+                <li>50 Agents</li>
+                <li>1M vectors per agent</li>
+                <li>Up to 3 Nodes</li>
+                <li>Everything in Free</li>
+                <li>Email support (48h SLA)</li>
+                <li>Prometheus metrics export</li>
+            </ul>
+            <a href="mailto:sulingqi@hotmail.com?subject=VecminDB Pro" class="btn btn-primary">Subscribe</a>
         </div>
+
+        <!-- Team -->
         <div class="card">
-            <span class="category">AI Infrastructure</span>
-            <h3>VecMinDB</h3>
-            <div class="price">$499<span>/mo</span></div>
-            <p class="desc">Next-generation vector database for AI Agent memory with NSGA-II optimization and dynamic knowledge retrieval.</p>
-            <a href="/" class="btn btn-outline">Learn More</a>
+            <span class="category">Business</span>
+            <h3>Team</h3>
+            <div class="price">$299<span>/mo</span></div>
+            <p class="desc">For AI agent platform companies running multi-agent systems at scale.</p>
+            <ul>
+                <li>500 Agents</li>
+                <li>Unlimited vectors per agent</li>
+                <li>Up to 10 Nodes</li>
+                <li><strong>Sovereign Federation</strong></li>
+                <li>Alliance Centroid sharing</li>
+                <li>Priority support (4h SLA)</li>
+            </ul>
+            <a href="mailto:sulingqi@hotmail.com?subject=VecminDB Team" class="btn btn-outline">Subscribe</a>
         </div>
+
+        <!-- Enterprise -->
         <div class="card">
-            <span class="category">SaaS</span>
-            <h3>Pet Booking System</h3>
-            <div class="price">$19<span>/mo</span></div>
-            <p class="desc">Online booking and scheduling platform for pet grooming and daycare businesses.</p>
-            <a href="#" class="btn btn-outline">Coming Soon</a>
-        </div>
-        <div class="card">
-            <span class="category">SaaS</span>
-            <h3>Status Page Hub</h3>
-            <div class="price">$9<span>/mo</span></div>
-            <p class="desc">Uptime monitoring and status page hosting for small teams and startups.</p>
-            <a href="#" class="btn btn-outline">Coming Soon</a>
-        </div>
-        <div class="card">
-            <span class="category">SaaS</span>
-            <h3>MD Resume Generator</h3>
-            <div class="price">$4.99<span>/one-time</span></div>
-            <p class="desc">Markdown-to-professional-resume converter with beautiful templates.</p>
-            <a href="#" class="btn btn-outline">Coming Soon</a>
+            <span class="category">Enterprise</span>
+            <h3>Enterprise</h3>
+            <div class="price">Custom</div>
+            <p class="desc">For regulated industries needing air-gapped deployment, SLA guarantees, and source-code escrow.</p>
+            <ul>
+                <li>Unlimited Agents</li>
+                <li>Unlimited Nodes</li>
+                <li>Air-gapped deployment</li>
+                <li>Source-code escrow (NDA)</li>
+                <li>Dedicated support engineer</li>
+                <li>Custom SLA with penalties</li>
+                <li>信创 architecture support</li>
+            </ul>
+            <a href="mailto:sulingqi@hotmail.com?subject=VecminDB Enterprise" class="btn btn-outline">Contact Sales</a>
         </div>
     </div>
+
+    <p class="note">
+        All plans include 30-day full-featured trial with no restrictions.
+        After trial, Free tier applies automatically — your data is never locked.
+        Enterprise annual licenses start at <strong>$50,000/year</strong> for unlimited agents within your VPC.<br>
+        Questions? <a href="mailto:sulingqi@hotmail.com">sulingqi@hotmail.com</a>
+    </p>
+
     <footer>
-        © 2026 Shanghai Lingxin Zhizuan Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
+        © 2026 Shanghai Lingxin Intelligent Technology Co., Ltd. | <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="/refund.html">Refund</a>
     </footer>
-    <script src="https://www.paypal.com/sdk/js?client-id=ASJcyxo1zdZUBvYZepiFL1tUARTCoLEkQgiVCmhrZ5i26voDZxG5QDD3B2R6SLseSnhauG2IwnHi9en1&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
-    <script>
-      if (typeof paypal !== 'undefined' && paypal.Buttons) {
-      paypal.Buttons({
-          style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'paypal' },
-          createSubscription: function(d,a){ return a.subscription.create({ plan_id: 'P-9RD48572XF8523849NHZSPKA' }); },
-          onApprove: function(d,a){
-            var e=prompt('Enter your email to receive your license key:');
-            if(e){
-              fetch('https://license-server-production-3cf0.up.railway.app/api/webhook/paypal',{
-                method:'POST', headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({email:e, subscriptionId:d.subscriptionID})
-              }).then(function(r){return r.json();}).then(function(j){
-                if(j.key) alert('License key: '+j.key); else alert('Error');
-              }).catch(function(){alert('Server error.');});
-            }else{alert('Subscription ID: '+d.subscriptionID);}
-          }
-      }).render('#paypal-button-container-P-9RD48572XF8523849NHZSPKA');
-      }
-    </script>
 </body>
 </html>
