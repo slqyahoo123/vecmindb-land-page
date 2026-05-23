@@ -52,7 +52,16 @@ const translations = {
         'loader-status': 'INITIALIZING MEMORY ENGINE...',
         'logo-text': 'VecminDB',
         'viz-label': '记忆蒸馏管线',
-        'viz-title': 'LTSM <span style="font-weight: 300; opacity: 0.7;">LIFECYCLE</span>'
+        'viz-title': 'LTSM <span style="font-weight: 300; opacity: 0.7;">LIFECYCLE</span>',
+        'code-comment-1': '# 1. 启动 VecminDB（零外部依赖）',
+        'code-comment-2': '# 2. 存一条记忆——纯文本，不要向量。内置模型自动处理 Embedding。',
+        'code-comment-3': '# 3. 语义搜索——"who disputes charges" 找到 "always disputes charges over $50"',
+        'code-comment-4': '# 4. 浏览器打开 Dashboard，看记忆蒸馏实时发生',
+        'btn-ent-contact': 'Enterprise 询价 →',
+        'footer-copyright': '© 2026 上海灵心智算智能科技有限公司. All Rights Reserved. VecminDB is proprietary software.',
+        'footer-patent': 'VecminDB 系统核心算法受多项专利申请保护。未经授权，任何形式的逆向工程或商业模仿将面临法律追责。',
+        'footer-icp': '沪ICP备XXXXXXXX号',
+        'footer-en-name': 'SHANGHAI LINGXIN INTELLIGENT TECHNOLOGY CO., LTD.'
     },
     'en': {
         'nav-features': 'Features',
@@ -102,7 +111,16 @@ const translations = {
         'loader-status': 'INITIALIZING MEMORY ENGINE...',
         'logo-text': 'VecminDB',
         'viz-label': 'Memory Distillation Pipeline',
-        'viz-title': 'LTSM <span style="font-weight: 300; opacity: 0.7;">LIFECYCLE</span>'
+        'viz-title': 'LTSM <span style="font-weight: 300; opacity: 0.7;">LIFECYCLE</span>',
+        'code-comment-1': '# 1. Start VecminDB (Zero dependencies)',
+        'code-comment-2': '# 2. Store a memory — plain text, no vectors. Built-in model handles embeddings.',
+        'code-comment-3': '# 3. Semantic search — "who disputes charges" finds "always disputes charges over $50"',
+        'code-comment-4': '# 4. Open Dashboard in browser, watch memory distillation happen in real-time',
+        'btn-ent-contact': 'Contact Enterprise Sales →',
+        'footer-copyright': '© 2026 Shanghai Lingxin Intelligent Technology Co., Ltd. All Rights Reserved. VecminDB is proprietary software.',
+        'footer-patent': 'VecminDB core algorithms are protected by multiple patent applications. Unauthorized reverse engineering or commercial imitation will face legal action.',
+        'footer-icp': 'ICP License: XXXXXXXX',
+        'footer-en-name': 'SHANGHAI LINGXIN INTELLIGENT TECHNOLOGY CO., LTD.'
     }
 };
 
@@ -398,6 +416,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 语言切换功能激活
     const langBtn = document.getElementById('langBtn');
+    
+    // 初始化时检测浏览器语言或默认语言
+    const initLang = (navigator.language || navigator.userLanguage).startsWith('zh') ? 'zh' : 'en';
+    if (initLang === 'en') {
+        setLanguage('en');
+        if (langBtn) langBtn.innerText = '中文';
+    } else {
+        setLanguage('zh');
+        if (langBtn) langBtn.innerText = 'EN';
+    }
+
     if (langBtn) {
         langBtn.addEventListener('click', () => {
             const nextLang = currentLang === 'zh' ? 'en' : 'zh';

@@ -117,20 +117,20 @@
                     <span class="code-lang">Terminal</span>
                     <span class="code-filename">bash</span>
                 </div>
-                <pre><span class="cm"># 1. 启动 VecminDB（零外部依赖）</span>
+                <pre><span class="cm" data-i18n="code-comment-1"># 1. 启动 VecminDB（零外部依赖）</span>
 docker run -d --name vecmindb -p 5520:5520 vecmindb/vecmindb:latest
 
-<span class="cm"># 2. 存一条记忆——纯文本，不要向量。内置模型自动处理 Embedding。</span>
+<span class="cm" data-i18n="code-comment-2"># 2. 存一条记忆——纯文本，不要向量。内置模型自动处理 Embedding。</span>
 curl -X POST http://localhost:5520/api/v1/mcp/message \
   -H <span class="s">"Content-Type: application/json"</span> \
   -d <span class="s">'{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"store_memory","arguments":{"text":"Customer #4521 always disputes charges over $50; requires manager approval for refunds","agent_id":"billing"}}}'</span>
 
-<span class="cm"># 3. 语义搜索——"who disputes charges" 找到 "always disputes charges over $50"</span>
+<span class="cm" data-i18n="code-comment-3"># 3. 语义搜索——"who disputes charges" 找到 "always disputes charges over $50"</span>
 curl -X POST http://localhost:5520/api/v1/mcp/message \
   -H <span class="s">"Content-Type: application/json"</span> \
   -d <span class="s">'{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"search_memory","arguments":{"query":"who disputes charges","agent_id":"billing"}}}'</span>
 
-<span class="cm"># 4. 浏览器打开 Dashboard，看记忆蒸馏实时发生</span>
+<span class="cm" data-i18n="code-comment-4"># 4. 浏览器打开 Dashboard，看记忆蒸馏实时发生</span>
 <span class="en">open</span> http://localhost:5520/dashboard</pre>
             </div>
             <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;" data-i18n="qs-note">你从未碰过 embedding 模型——VecminDB 内置处理了。你从未写一行蒸馏代码——引擎在后台自动运行。</p>
@@ -163,7 +163,7 @@ curl -X POST http://localhost:5520/api/v1/mcp/message \
                 </div>
             </div>
             <p style="text-align: center; margin-top: 1.5rem;">
-                <a href="mailto:sulingqi@hotmail.com" class="btn-primary" style="display: inline-block; padding: 12px 32px; border-radius: 10px; font-weight: 600; text-decoration: none;">Enterprise 询价 →</a>
+                <a href="mailto:sulingqi@hotmail.com" class="btn-primary" style="display: inline-block; padding: 12px 32px; border-radius: 10px; font-weight: 600; text-decoration: none;" data-i18n="btn-ent-contact">Enterprise 询价 →</a>
             </p>
         </section>
 
@@ -184,16 +184,16 @@ curl -X POST http://localhost:5520/api/v1/mcp/message \
                 上海灵心智算智能科技有限公司。
             </p>
         </div>
-        <p>© 2026 上海灵心智算智能科技有限公司. All Rights Reserved. VecminDB is proprietary software.</p>
-        <p style="font-size: 0.7rem; color: #52525b; margin-top: 10px;">
+        <p data-i18n="footer-copyright">© 2026 上海灵心智算智能科技有限公司. All Rights Reserved. VecminDB is proprietary software.</p>
+        <p style="font-size: 0.7rem; color: #52525b; margin-top: 10px;" data-i18n="footer-patent">
             VecminDB 系统核心算法受多项专利申请保护。未经授权，任何形式的逆向工程或商业模仿将面临法律追责。
         </p>
         <p style="margin-top: 0.5rem; opacity: 0.5; font-size: 0.75rem;">
             <a href="/privacy.html" style="color: inherit; margin: 0 10px;">Privacy Policy</a> |
             <a href="/terms.html" style="color: inherit; margin: 0 10px;">Terms of Service</a> |
-            <span style="margin: 0 10px;">沪ICP备XXXXXXXX号</span>
+            <span style="margin: 0 10px;" data-i18n="footer-icp">沪ICP备XXXXXXXX号</span>
         </p>
-        <p style="margin-top: 1rem; opacity: 0.5;">SHANGHAI LINGXIN INTELLIGENT TECHNOLOGY CO., LTD.</p>
+        <p style="margin-top: 1rem; opacity: 0.5;" data-i18n="footer-en-name">SHANGHAI LINGXIN INTELLIGENT TECHNOLOGY CO., LTD.</p>
     </footer>
 
     <script src="script.js"></script>
