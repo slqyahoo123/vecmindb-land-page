@@ -1,20 +1,35 @@
-name: Landing Page CI
+name: Lingxin AI Landing Page CI
 
 on:
   push:
     branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
-  static_check:
+  build_and_test:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
+    - name: Checkout Code
       uses: actions/checkout@v4
-    - name: HTML Syntax Check
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Validate Code Quality (Lint)
+      run: npx eslint . --ext .js
+
+    - name: Execute E2E Smoke Tests
       run: |
-        for f in index.html pricing.html; do
-          echo "Checking $f..."
-          grep -q '</html>' "$f" && echo "  OK" || { echo "  FAIL: $f missing closing </html>"; exit 1; }
-        done
-    - name: Deploy Trigger
-      run: echo "Deployment will be handled by GitHub Pages."
+        npx playwright install --with-deps
+        npm test
+
+    - name: Production Image Build Check
+      run: docker build -t lingxin-lp:latest .
