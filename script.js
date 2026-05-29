@@ -94,7 +94,7 @@ const translations = {
         'qs-desc': 'No SDK. No API key. No environment setup. You never even touch a vector.',
         'qs-note': 'You never touched an embedding model — VecminDB handles it. You never wrote distillation code — the engine runs it in the background.',
         'price-title': 'Per Agent, Not Per Vector',
-        'price-desc': 'Vector count grows with time. Agent count doesn't. LTSM distillation means storage converges, not diverges — your bill doesn't grow the longer your agents run.',
+        'price-desc': 'Vector count grows with time. Agent count doesn\'t. LTSM distillation means storage converges, not diverges — your bill doesn\'t grow the longer your agents run.',
         'plan-free-h': 'Free',
         'plan-free-desc': '5 Agents · 100K vectors/agent · 1 Node · Distillation enabled · No credit card · Free forever',
         'plan-pro-h': 'Pro',
@@ -108,7 +108,7 @@ const translations = {
         'contact-desc': '30-day full-featured trial. Free tier forever. Data never leaves your VPC.',
         'contact-btn': 'Contact Enterprise Team →',
         'mission-badge': 'PROPRIETARY · BUILT IN RUST',
-        'mission-desc': 'VecminDB is proprietary commercial software. Built from scratch in Rust for extreme performance with 8 filed patent applications. As the industry's first dual-core Cognitive Vector Database, we deliver sub-millisecond retrieval coupled with native memory evolution and cross-agent federated knowledge consensus. Shanghai Lingxin Zhisuan Intelligent Technology Co., Ltd.',
+        'mission-desc': 'VecminDB is proprietary commercial software. Built from scratch in Rust for extreme performance with 8 filed patent applications. As the industry\'s first dual-core Cognitive Vector Database, we deliver sub-millisecond retrieval coupled with native memory evolution and cross-agent federated knowledge consensus. Shanghai Lingxin Zhisuan Intelligent Technology Co., Ltd.',
         'loader-title': 'VecminDB Memory OS',
         'loader-status': 'INITIALIZING MEMORY ENGINE...',
         'logo-text': 'VecminDB',
