@@ -112,7 +112,13 @@
         <section id="quickstart" class="section reveal">
             <h2 style="text-align: center; font-size: 2.5rem;" data-i18n="qs-title">30 秒看到价值</h2>
             <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem;" data-i18n="qs-desc">不需要 SDK。不需要 API Key。不需要配置环境。你甚至不需要碰向量。</p>
-            <div class="code-block">
+            <div class="code-tabs" style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                <button class="code-tab-btn active" onclick="switchTab('mcp')" data-i18n="qs-tab-mcp">单机离线 MCP</button>
+                <button class="code-tab-btn" onclick="switchTab('cluster')" data-i18n="qs-tab-cluster">30秒集群启动</button>
+            </div>
+
+            <!-- Standalone MCP Code Block -->
+            <div id="code-mcp" class="code-block tab-content">
                 <div class="code-header">
                     <span class="code-lang">Terminal</span>
                     <span class="code-filename">bash</span>
@@ -135,7 +141,25 @@ curl -X POST http://localhost:5520/api/v1/mcp/message \
   -d <span class="s">'{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"search_memory","arguments":{"query":"who disputes charges","agent_id":"billing"}}}'</span>
 
 <span class="cm" data-i18n="code-comment-4"># 4. 浏览器打开 Dashboard，看记忆蒸馏实时发生</span>
-<span class="en">open</span> http://localhost:5520/dashboard</pre>
+<span class="en">open</span> http://localhost:5520/dashboard</pre>
+            </div>
+
+            <!-- Distributed Cluster Code Block -->
+            <div id="code-cluster" class="code-block tab-content" style="display: none;">
+                <div class="code-header">
+                    <span class="code-lang">Terminal</span>
+                    <span class="code-filename">docker-compose.yml</span>
+                </div>
+                <pre><span class="cm" data-i18n="code-cluster-comment-1"># 1. 一键拉起 3 节点 Raft 强一致性分布式集群（自带 30s 极速自愈）</span>
+docker compose up -d
+
+<span class="cm" data-i18n="code-cluster-comment-2"># 2. 集群启动自动探测硬件并自动调优，检查集群拓扑健康状态</span>
+curl http://localhost:5520/api/v1/cluster/topology
+
+<span class="cm" data-i18n="code-cluster-comment-3"># 3. 分布式多节点高并发存入记忆，数据根据分区哈希路由与重平衡</span>
+curl -X POST http://localhost:5520/api/v1/mcp/message \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"store_memory","arguments":{"text":"Internal Audit Secured","agent_id":"cluster"}}}'</span></pre>
             </div>
             <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;" data-i18n="qs-note">你从未碰过 embedding 模型——VecminDB 内置处理了。你从未写一行蒸馏代码——引擎在后台自动运行。</p>
             

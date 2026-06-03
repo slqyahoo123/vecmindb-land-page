@@ -32,6 +32,11 @@ const translations = {
         'qs-title': '30 秒看到价值',
         'qs-desc': '不需要 SDK。不需要 API Key。不需要配置环境。你甚至不需要碰向量。',
         'qs-note': '你从未碰过 embedding 模型——VecminDB 内置处理了。你从未写一行蒸馏代码——引擎在后台自动运行。',
+        'qs-tab-mcp': '单机离线 MCP',
+        'qs-tab-cluster': '30秒集群启动',
+        'code-cluster-comment-1': '# 1. 一键拉起 3 节点 Raft 强一致性分布式集群（自带 30s 极速自愈）',
+        'code-cluster-comment-2': '# 2. 集群启动自动探测硬件并自动调优，检查集群拓扑健康状态',
+        'code-cluster-comment-3': '# 3. 分布式多节点高并发存入记忆，数据根据分区哈希路由与重平衡',
         'price-title': '按 Agent 计费，不按向量',
         'price-desc': '向量数随时间增长。Agent 数不会。LTSM 蒸馏让存储收敛而非发散——你的账单不随 Agent 运行时间增长。',
         'plan-free-h': 'Free',
@@ -95,6 +100,11 @@ const translations = {
         'qs-title': 'See Value in 30 Seconds',
         'qs-desc': 'No SDK. No API key. No environment setup. You never even touch a vector.',
         'qs-note': 'You never touched an embedding model — VecminDB handles it. You never wrote distillation code — the engine runs it in the background.',
+        'qs-tab-mcp': 'Standalone MCP',
+        'qs-tab-cluster': '30s Cluster Bootstrap',
+        'code-cluster-comment-1': '# 1. Launch a 3-node Raft highly-consistent distributed cluster (with 30s self-healing)',
+        'code-cluster-comment-2': '# 2. Auto hardware probe & tune, verify cluster topology and health status',
+        'code-cluster-comment-3': '# 3. Concurrent multi-node memory ingestion, auto sharding & rebalance',
         'price-title': 'Per Agent, Not Per Vector',
         'price-desc': 'Vector count grows with time. Agent count doesn\'t. LTSM distillation means storage converges, not diverges — your bill doesn\'t grow the longer your agents run.',
         'plan-free-h': 'Free',
@@ -497,4 +507,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+});
+
+// [PRODUCTION-GRADE]: Swaps the active view and button style in the Quick Start area
+window.switchTab = (tabName) => {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(el => {
+        el.style.display = 'none';
+    });
+    // Show selected tab content
+    const selectedBlock = document.getElementById(`code-${tabName}`);
+    if (selectedBlock) {
+        selectedBlock.style.display = 'block';
+    }
+    // Update active tab button style
+    document.querySelectorAll('.code-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const clickedBtn = Array.from(document.querySelectorAll('.code-tab-btn')).find(btn => 
+        btn.getAttribute('onclick').includes(tabName)
+    );
+    if (clickedBtn) {
+        clickedBtn.classList.add('active');
+    }
+};
