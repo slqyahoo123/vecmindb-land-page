@@ -82,6 +82,8 @@
 
             <a href="#quickstart" data-i18n="nav-quickstart">快速上手</a>
 
+            <a href="#dashboard" data-i18n="nav-dashboard">控制台</a>
+
             <a href="#pricing" data-i18n="nav-pricing">定价</a>
 
             <a href="https://github.com/slqyahoo123/vecmindb-sdk" target="_blank" data-i18n="nav-docs">文档</a>
@@ -317,7 +319,19 @@ curl -X POST http://localhost:5520/api/v1/mcp/message \
 
             <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;" data-i18n="qs-note">你从未碰过 embedding 模型——VecminDB 内置处理了。你从未写一行蒸馏代码——引擎在后台自动运行。</p>
 
-            
+            <!-- Dashboard Quick Link Alert Box -->
+            <div class="dashboard-tip-box" style="margin-top: 2rem; padding: 1.25rem 1.5rem; background: rgba(6, 182, 212, 0.03); border: 1px dashed rgba(6, 182, 212, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; backdrop-filter: blur(10px); transition: all 0.3s ease; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; align-items: center; gap: 1rem; text-align: left;">
+                    <div style="font-size: 1.75rem; background: rgba(6, 182, 212, 0.1); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(6, 182, 212, 0.2);">🖥️</div>
+                    <div>
+                        <strong style="color: var(--text-primary); font-size: 0.95rem; font-weight: 600; display: block;" data-i18n="qs-dash-tip-title">服务启动后即可访问可视化控制台</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.25rem; line-height: 1.4;" data-i18n="qs-dash-tip-desc">一旦 Docker 或二进制启动成功，直接在浏览器中打开内置控制台，直观观察记忆蒸馏与集群拓扑。</p>
+                    </div>
+                </div>
+                <a href="http://localhost:5520/dashboard" target="_blank" class="btn-primary" style="font-size: 0.8rem; padding: 0.6rem 1.2rem; border-radius: 10px; text-decoration: none; white-space: nowrap; font-weight: 600; display: flex; align-items: center; gap: 4px; box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); border: none;">
+                    <span>Open Console</span> ↗
+                </a>
+            </div>
 
             <div style="margin-top: 3rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
 
@@ -351,6 +365,157 @@ curl -X POST http://localhost:5520/api/v1/mcp/message \
 
         </section>
 
+        <!-- Web Dashboard Showcase -->
+        <section id="dashboard" class="section reveal">
+            <div class="dashboard-layout">
+                <!-- Description side -->
+                <div class="dashboard-desc-side">
+                    <div class="slogan-badge" style="margin-bottom: 1rem; width: fit-content; letter-spacing: 2px;">VECMINDB UI</div>
+                    <h3 data-i18n="dash-title">内置零依赖可视化脑图控制台</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="dash-subtitle">无需安装额外软件，浏览器一键访问。实时掌握智能体大脑的所有状态演化。</p>
+                    
+                    <ul class="dashboard-features-list">
+                        <li>
+                            <div class="bullet-icon">⚡</div>
+                            <div>
+                                <h4 data-i18n="dash-feat-1-title">LTSM 遗忘线与记忆衰减监测</h4>
+                                <p data-i18n="dash-feat-1-desc">以曲线直观展现 Episodic Memory 的半衰期衰减与降噪过滤进度。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bullet-icon">🧠</div>
+                            <div>
+                                <h4 data-i18n="dash-feat-2-title">PCA 知识质心自进化演化图</h4>
+                                <p data-i18n="dash-feat-2-desc">实时观察多条关联记忆如何通过 Welford 在线均值和 DP-Federated PCA 蒸馏合并为稳定的知识质心。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="bullet-icon">⛓️</div>
+                            <div>
+                                <h4 data-i18n="dash-feat-3-title">集群强一致 Raft 拓扑图</h4>
+                                <p data-i18n="dash-feat-3-desc">呈现分布式节点的心跳状态、主备关系及日志复制轨迹，确保 100% 数据一致性。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Live Mock Visual Console side -->
+                <div class="dashboard-viz-side">
+                    <div class="dashboard-mock-console">
+                        <!-- Top window bar -->
+                        <div class="console-bar">
+                            <div class="console-dots">
+                                <div class="console-dot red"></div>
+                                <div class="console-dot yellow"></div>
+                                <div class="console-dot green"></div>
+                            </div>
+                            <div class="console-title">VECMINDB CORE DASHBOARD v1.5.0</div>
+                            <div class="console-badge">
+                                <div class="badge-pulse"></div>
+                                <span>LIVE</span>
+                            </div>
+                        </div>
+
+                        <!-- Inner dashboard layout simulating visual features -->
+                        <div class="console-grid">
+                            <!-- Left: LTSM Decay Graph / PCA centroid clusters -->
+                            <div class="console-panel">
+                                <div class="panel-header" data-i18n="dash-feat-1-title">LTSM Forgetting & Decay Monitoring</div>
+                                <div class="console-graph-container">
+                                    <svg viewBox="0 0 300 120" style="width: 100%; height: 100%;">
+                                        <!-- Gradients -->
+                                        <defs>
+                                            <linearGradient id="cyanGradient" x1="0" y1="0" x2="1" y2="0">
+                                                <stop offset="0%" stop-color="#3b82f6" />
+                                                <stop offset="100%" stop-color="#06b6d4" />
+                                            </linearGradient>
+                                            <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stop-color="#06b6d4" />
+                                                <stop offset="100%" stop-color="transparent" />
+                                            </linearGradient>
+                                        </defs>
+                                        
+                                        <!-- Grid lines -->
+                                        <g class="console-grid-lines">
+                                            <line x1="0" y1="30" x2="300" y2="30" />
+                                            <line x1="0" y1="60" x2="300" y2="60" />
+                                            <line x1="0" y1="90" x2="300" y2="90" />
+                                            <line x1="75" y1="0" x2="75" y2="120" />
+                                            <line x1="150" y1="0" x2="150" y2="120" />
+                                            <line x1="225" y1="0" x2="225" y2="120" />
+                                        </g>
+
+                                        <!-- Area under curve -->
+                                        <path class="console-graph-area" d="M 0,110 Q 50,40 100,55 T 200,90 T 300,110 L 300,120 L 0,120 Z" />
+
+                                        <!-- Graph Line representing decay curve -->
+                                        <path class="console-graph-line" d="M 0,110 Q 50,40 100,55 T 200,90 T 300,110" />
+
+                                        <!-- Hover tooltip dot mock -->
+                                        <circle cx="100" cy="55" r="4" fill="#06b6d4" />
+                                        <text x="110" y="50" fill="#ffffff" font-size="8" font-family="monospace">Centroid A: t=1.2s</text>
+                                    </svg>
+                                </div>
+                                <div style="font-size: 0.65rem; color: var(--text-secondary); text-align: left; margin-top: 0.5rem; font-family: monospace;" data-i18n="dash-run-desc">
+                                    Execute semantic vector queries directly in the browser to instantly trace associated agent memories across sovereignty domains.
+                                </div>
+                            </div>
+
+                            <!-- Right: Consensus Topology & stats -->
+                            <div class="console-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                <div>
+                                    <div class="panel-header" data-i18n="dash-feat-3-title">Raft Cluster Topology Console</div>
+                                    
+                                    <!-- Topology visualization SVG -->
+                                    <div style="height: 90px; margin-bottom: 0.5rem;">
+                                        <svg viewBox="0 0 120 90" style="width: 100%; height: 100%;">
+                                            <!-- Connections -->
+                                            <line x1="60" y1="20" x2="30" y2="70" class="topo-link" stroke="#3b82f6" stroke-width="1" />
+                                            <line x1="60" y1="20" x2="90" y2="70" class="topo-link" stroke="#3b82f6" stroke-width="1" />
+                                            <line x1="30" y1="70" x2="90" y2="70" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+
+                                            <!-- Leader Node -->
+                                            <g class="topo-node" transform="translate(60, 20)">
+                                                <circle r="8" fill="#06b6d4" />
+                                                <circle r="12" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.5" />
+                                                <text y="-12" text-anchor="middle" fill="#ffffff" font-size="6" font-family="monospace">Node 1 (Leader)</text>
+                                            </g>
+
+                                            <!-- Follower Node 2 -->
+                                            <g class="topo-node" transform="translate(30, 70)">
+                                                <circle r="6" fill="#3b82f6" />
+                                                <text y="12" text-anchor="middle" fill="var(--text-secondary)" font-size="6" font-family="monospace">Node 2</text>
+                                            </g>
+
+                                            <!-- Follower Node 3 -->
+                                            <g class="topo-node" transform="translate(90, 70)">
+                                                <circle r="6" fill="#3b82f6" />
+                                                <text y="12" text-anchor="middle" fill="var(--text-secondary)" font-size="6" font-family="monospace">Node 3</text>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem; width: 100%;">
+                                    <div class="metric-row">
+                                        <span class="metric-lbl">Cluster Status</span>
+                                        <span class="metric-val green">HEALTHY</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-lbl">Active Nodes</span>
+                                        <span class="metric-val">3 / 3</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-lbl">Raft Index</span>
+                                        <span class="metric-val" style="color: #06b6d4;">2,845,910</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
         <!-- Pricing -->
