@@ -118,10 +118,10 @@
                     <span class="code-filename">bash</span>
                 </div>
                 <pre><span class="cm" data-i18n="code-comment-1"># 1. 启动 VecminDB（零外部依赖）</span>
-# 官方 GitHub GHCR 源 (海外直连推荐):
+<span class="cm" data-i18n="code-comment-1-1"># 官方 GitHub GHCR 源 (海外直连推荐):</span>
 docker run -d --name vecmindb -p 5520:5520 ghcr.io/slqyahoo123/vecmindb:latest
 
-# 备选：国内阿里云极速专线 (中国大陆开发者推荐，免翻墙秒级下载):
+<span class="cm" data-i18n="code-comment-1-2"># 备选：国内阿里云极速专线 (中国大陆开发者推荐，免翻墙秒级下载):</span>
 # docker run -d --name vecmindb -p 5520:5520 crpi-ngtfnt7d3tsnwk7l.cn-shanghai.personal.cr.aliyuncs.com/vecmindb/vecmindb:latest
 
 <span class="cm" data-i18n="code-comment-2"># 2. 存一条记忆——纯文本，不要向量。内置模型自动处理 Embedding。</span>
