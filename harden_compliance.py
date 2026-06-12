@@ -157,11 +157,20 @@ claim_replacements = [
     )
 ]
 
-# 执行五个文件的更新
+# ----------------- 6. INDEX PAGE GITHUB UPDATES -----------------
+index_replacements = [
+    (
+        'slqyahoo123',
+        'lingxinmind'
+    )
+]
+
+# 执行所有文件的更新
 update_file("privacy.html", privacy_replacements)
 update_file("terms.html", terms_replacements)
 update_file("refund.html", refund_replacements)
 update_file("pricing.html", pricing_replacements)
 update_file("claim.html", claim_replacements)
+update_file("index.html", index_replacements)
 
 print("COMPLIANCE_HARDENING_SUCCESS")
